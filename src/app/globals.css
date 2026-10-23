@@ -1,0 +1,60 @@
+@import "tailwindcss";
+
+:root {
+  --background: #f0fafc;
+  --surface: #ffffff;
+  --foreground: #15333c;
+  --muted: #526b73;
+  --border: #c8e3e9;
+  --brand: #007290;
+  --brand-deep: #00586c;
+  --brand-accent: #00a1cb;
+  --brand-soft: #e6f6fa;
+  --accent: #6fa700;
+  --accent-deep: #456900;
+  --accent-soft: #f1f7e5;
+  --deep: #004455;
+  --on-brand: #ffffff;
+  --font-body: "Segoe UI", Arial, sans-serif;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-surface: var(--surface);
+  --color-foreground: var(--foreground);
+  --color-muted: var(--muted);
+  --color-border: var(--border);
+  --color-brand: var(--brand);
+  --color-brand-deep: var(--brand-deep);
+  --color-brand-accent: var(--brand-accent);
+  --color-brand-soft: var(--brand-soft);
+  --color-accent: var(--accent);
+  --color-accent-deep: var(--accent-deep);
+  --color-accent-soft: var(--accent-soft);
+  --color-deep: var(--deep);
+  --color-on-brand: var(--on-brand);
+  --font-sans: var(--font-body);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+}
+
+::selection {
+  background: var(--brand-accent);
+  color: var(--deep);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
