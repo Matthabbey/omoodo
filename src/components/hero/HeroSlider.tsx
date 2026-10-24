@@ -83,14 +83,14 @@ export function HeroSlider() {
   return (
     <section
       aria-label="Omoodo Services Carousel"
-      className="relative w-full overflow-hidden select-none bg-deep"
+      className="relative flex min-h-0 w-full flex-1 overflow-hidden select-none bg-deep"
       onMouseEnter={() => setIsPaused(true)}
       onMouseLeave={() => setIsPaused(false)}
       onTouchEnd={handleTouchEnd}
       onTouchStart={handleTouchStart}
     >
-      {/* Slides Container - Compact Height */}
-      <div className="relative min-h-[520px] sm:min-h-[410px] lg:h-[460px] w-full">
+      {/* Slides Container */}
+      <div className="relative min-h-[440px] w-full flex-1 sm:min-h-[480px] lg:min-h-[560px] [@media(max-height:800px)]:lg:min-h-[460px]">
         {OMOODO_SLIDES.map((slide, index) => (
           <HeroSlideItem
             isActive={index === currentSlideIndex}
@@ -123,7 +123,7 @@ export function HeroSlider() {
       </div>
 
       {/* Bottom Pagination Bar & Controls */}
-      <div className="absolute bottom-4 sm:bottom-6 left-0 right-0 z-30 flex items-center justify-center gap-3">
+      <div className="absolute bottom-3 left-0 right-0 z-30 flex items-center justify-center gap-3 sm:bottom-14">
         {/* Play / Pause Toggle Button */}
         <button
           aria-label={isPaused ? "Resume auto-rotation" : "Pause auto-rotation"}

@@ -40,7 +40,7 @@ export function HeroSlideItem({
       <div className="absolute inset-0 bg-gradient-to-t from-deep/80 via-transparent to-deep/40" />
 
       {/* Slide Content Arena with safe padding so chevrons never overlap */}
-      <div className="relative z-20 mx-auto flex h-full max-w-7xl items-center px-14 py-6 pb-16 sm:px-20 sm:py-8 lg:px-24 lg:py-10">
+      <div className="relative z-20 mx-auto flex h-full max-w-7xl items-start px-14 py-6 pb-24 sm:items-center sm:px-20 sm:py-8 sm:pb-20 lg:px-24 lg:py-10 lg:pb-20">
         <div className="max-w-2xl text-left">
           {/* Category Pill / Eyebrow */}
           <div
@@ -48,7 +48,7 @@ export function HeroSlideItem({
               }`}
           >
             {slide.categoryIcon}
-            <span className="text-[10px] sm:text-[11px] font-semibold tracking-wider uppercase text-brand-soft">
+            <span className="text-[11px] font-semibold tracking-wider uppercase text-brand-soft sm:text-xs lg:text-sm">
               {slide.category}
             </span>
           </div>
@@ -61,7 +61,7 @@ export function HeroSlideItem({
 
           {/* Main Headline with Gradient Accent */}
           <h2
-            className={`text-2xl font-bold leading-[1.16] tracking-[-0.03em] text-white sm:text-3xl lg:text-[36px] transition-all duration-700 delay-200 ${isActive ? "translate-y-0 opacity-100" : "translate-y-4 opacity-0"
+            className={`text-3xl font-bold leading-[1.12] tracking-[-0.03em] text-white transition-all duration-700 delay-200 sm:text-4xl lg:text-5xl ${isActive ? "translate-y-0 opacity-100" : "translate-y-4 opacity-0"
               }`}
           >
             {slide.headline}{" "}
@@ -72,7 +72,7 @@ export function HeroSlideItem({
 
           {/* Description Paragraph */}
           <p
-            className={`mt-2.5 max-w-xl text-xs sm:text-sm lg:text-[15px] leading-relaxed text-slate-200/95 transition-all duration-700 delay-300 ${isActive ? "translate-y-0 opacity-100" : "translate-y-4 opacity-0"
+            className={`mt-3 max-w-2xl text-sm leading-relaxed text-slate-200/95 transition-all duration-700 delay-300 sm:text-base lg:text-lg ${isActive ? "translate-y-0 opacity-100" : "translate-y-4 opacity-0"
               }`}
           >
             {slide.description}
@@ -84,7 +84,7 @@ export function HeroSlideItem({
               }`}
           >
             <Link
-              className="inline-flex items-center justify-center gap-2 rounded-full bg-brand px-5 py-2 text-xs font-semibold leading-none text-on-brand shadow-sm transition-all duration-300 hover:bg-brand-deep hover:shadow-md focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand sm:text-sm [&_svg]:shrink-0"
+              className="inline-flex items-center justify-center gap-2 rounded-full bg-brand px-6 py-3 text-sm font-semibold leading-none text-on-brand shadow-sm transition-all duration-300 hover:bg-brand-deep hover:shadow-md focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand sm:text-base [&_svg]:shrink-0"
               href={slide.primaryBtnHref}
             >
               <span>{slide.primaryBtnText}</span>
@@ -92,7 +92,7 @@ export function HeroSlideItem({
             </Link>
 
             <Link
-              className="inline-flex items-center justify-center rounded-full border border-white/40 bg-white/10 px-5 py-2 text-xs font-semibold leading-none text-white shadow-sm backdrop-blur-md transition-all duration-300 hover:border-white hover:bg-white/20 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white sm:text-sm"
+              className="inline-flex items-center justify-center rounded-full border border-white/40 bg-white/10 px-6 py-3 text-sm font-semibold leading-none text-white shadow-sm backdrop-blur-md transition-all duration-300 hover:border-white hover:bg-white/20 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white sm:text-base"
               href={slide.secondaryBtnHref}
             >
               {slide.secondaryBtnText}
@@ -101,7 +101,7 @@ export function HeroSlideItem({
 
           {/* Slide Stat / Security Badge */}
           <div
-            className={`mt-4 flex items-center gap-2 text-xs font-medium text-slate-300 transition-all duration-700 delay-500 ${isActive ? "translate-y-0 opacity-100" : "translate-y-3 opacity-0"
+            className={`mt-5 flex items-center gap-2 text-sm font-medium text-slate-300 transition-all duration-700 delay-500 sm:text-base ${isActive ? "translate-y-0 opacity-100" : "translate-y-3 opacity-0"
               }`}
           >
             <CheckCircle2 className="h-3.5 w-3.5 text-accent" />

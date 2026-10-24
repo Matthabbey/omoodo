@@ -7,12 +7,14 @@ import { ArrowRight, ChevronDown } from "lucide-react";
 import { SERVICE_PAGES } from "../../constants/services";
 import { SERVICE_MENU_WATERMARK_ART } from "../../constants/cultural-watermarks";
 import { CulturalWatermarks } from "../home/CulturalWatermarks";
+import { MobileMenu } from "./MobileMenu";
 
 export function SiteHeader() {
   const pathname = usePathname();
   const [servicesOpen, setServicesOpen] = useState(false);
   const headerRef = useRef<HTMLElement>(null);
   const isServicePage = SERVICE_PAGES.some((service) => pathname === `/${service.slug}`);
+  const closeServicesMenu = () => setServicesOpen(false);
 
   useEffect(() => {
     function closeOnOutsideClick(event: MouseEvent) {
@@ -45,6 +47,9 @@ export function SiteHeader() {
   return (
     <header
       className="sticky top-0 z-50 border-b border-border bg-surface/75 backdrop-blur-md"
+      onClickCapture={(event) => {
+        if (event.target instanceof Element && event.target.closest("a")) closeServicesMenu();
+      }}
       ref={headerRef}
     >
       <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-3 sm:px-6 lg:px-8">
@@ -97,40 +102,13 @@ export function SiteHeader() {
         </nav>
 
         <Link
-          className="inline-flex shrink-0 items-center justify-center rounded-full bg-brand px-3 py-2.5 text-xs font-semibold leading-none text-on-brand transition hover:bg-brand-deep focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand sm:px-5 sm:text-sm"
+          className="hidden shrink-0 items-center justify-center rounded-full bg-brand px-5 py-2.5 text-sm font-semibold leading-none text-on-brand transition hover:bg-brand-deep focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand md:inline-flex"
           href="/contact"
         >
           Request support
         </Link>
+        <MobileMenu />
       </div>
-
-      <nav aria-label="Services" className="flex flex-wrap justify-center gap-1 overflow-hidden px-2 pb-2 text-xs font-semibold text-muted md:hidden">
-        {SERVICE_PAGES.map((service) => (
-          <Link
-            aria-current={pathname === `/${service.slug}` ? "page" : undefined}
-            className={`shrink-0 rounded-lg px-2 py-1.5 transition ${
-              pathname === `/${service.slug}`
-                ? "bg-brand-soft text-brand"
-                : "hover:bg-brand-soft hover:text-brand"
-            }`}
-            href={`/${service.slug}`}
-            key={service.slug}
-          >
-            {service.name}
-          </Link>
-        ))}
-        <Link
-          aria-current={pathname === "/contact" ? "page" : undefined}
-          className={`shrink-0 rounded-lg px-2 py-1.5 transition ${
-            pathname === "/contact"
-              ? "bg-brand-soft text-brand"
-              : "hover:bg-brand-soft hover:text-brand"
-          }`}
-          href="/contact"
-        >
-          Contact
-        </Link>
-      </nav>
 
       {servicesOpen && (
         <div
@@ -156,7 +134,6 @@ export function SiteHeader() {
                     }`}
                     href={`/${service.slug}`}
                     key={service.slug}
-                    onClick={() => setServicesOpen(false)}
                   >
                     <span className={`flex items-center justify-between gap-3 text-sm font-bold ${
                       pathname === `/${service.slug}` ? "text-brand" : "text-foreground group-hover:text-brand"
@@ -182,7 +159,6 @@ export function SiteHeader() {
               <Link
                 className="relative mt-5 inline-flex items-center justify-center gap-2 rounded-full bg-surface px-4 py-2.5 text-sm font-bold leading-none text-brand transition hover:bg-brand-soft [&_svg]:shrink-0"
                 href="/how-it-works"
-                onClick={() => setServicesOpen(false)}
               >
                 How it works
                 <ArrowRight aria-hidden="true" className="h-4 w-4" />

@@ -22,7 +22,7 @@ export function HeroQuickInquiry() {
   return (
     <form
       aria-label="Omoodo Quick Service Finder"
-      className="mt-6 flex flex-col gap-3 rounded-2xl border border-border bg-surface p-4 shadow-md lg:flex-row lg:items-center lg:gap-4 lg:p-3"
+      className="flex flex-col gap-4 rounded-2xl border border-border bg-surface p-4 shadow-md [&_label]:text-sm md:flex-row md:items-center md:gap-5 md:p-5 md:[&_button]:h-14 md:[&_button]:text-base"
       onSubmit={handleSubmit}
     >
       <div className="min-w-0 flex-1">
@@ -30,7 +30,9 @@ export function HeroQuickInquiry() {
           icon={<Briefcase className="h-4 w-4" />}
           label="What service do you need?"
           onChange={(val) => {
-            const service = SERVICE_OPTIONS.find((option) => option.value === val);
+            const service = SERVICE_OPTIONS.find(
+              (option) => option.value === val,
+            );
             if (service) setSelectedService(service.value);
           }}
           options={SERVICE_OPTIONS}
@@ -54,9 +56,9 @@ export function HeroQuickInquiry() {
         />
       </div>
 
-      <div className="lg:self-end">
+      <div className="shrink-0 md:self-end">
         <Button
-          className="h-11 w-full px-6 font-bold shadow-sm lg:w-auto"
+          className="h-12 w-full px-6 text-base font-bold shadow-sm md:h-14 md:w-auto lg:px-8"
           type="submit"
           variant="primary"
         >
