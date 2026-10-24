@@ -1,6 +1,7 @@
 import type { ServiceSlug } from "../types/service";
 import type {
   CulturalWatermarkArt,
+  CulturalWatermarkColor,
   CulturalWatermarkId,
   CulturalWatermarkPattern,
 } from "../types/cultural-watermark";
@@ -66,7 +67,24 @@ export const CULTURAL_WATERMARK_POSITIONS = {
   "bottom-right": "-right-32 -bottom-32 w-64 sm:-right-36 sm:-bottom-36 sm:w-96",
   "top-right": "-right-28 -top-28 w-56 sm:-right-24 sm:-top-24 sm:w-80",
   "bottom-left": "-left-32 -bottom-32 w-64 sm:-left-36 sm:-bottom-36 sm:w-96",
+  "rail-left-top": "left-2 top-2 hidden w-24 xl:block",
+  "rail-left-center": "left-2 top-1/2 hidden w-24 -translate-y-1/2 xl:block",
+  "rail-left-bottom": "bottom-2 left-2 hidden w-24 xl:block",
+  "rail-right-top": "right-2 top-2 hidden w-24 xl:block",
+  "rail-right-center": "right-2 top-1/2 hidden w-24 -translate-y-1/2 xl:block",
+  "rail-right-bottom": "bottom-2 right-2 hidden w-24 xl:block",
+  "rail-left-fill": "left-0 top-0 hidden h-full w-[calc((100vw-80rem)/2+9rem)] min-w-36 max-w-[28rem] xl:block",
+  "rail-right-fill": "right-0 top-0 hidden h-full w-[calc((100vw-80rem)/2+9rem)] min-w-36 max-w-[28rem] xl:block",
+  "content-fill": "inset-0 hidden h-full w-full md:block",
 } as const;
+
+export const CULTURAL_WATERMARK_COLOR_CLASSES: Record<CulturalWatermarkColor, string> = {
+  brand: "text-brand-accent",
+  accent: "text-accent",
+  "african-green": "text-culture-green",
+  "african-gold": "text-culture-gold",
+  "african-red": "text-culture-red",
+};
 
 export const HOME_WATERMARK_ART: readonly CulturalWatermarkArt[] = [
   { id: "diamond-weave", placement: "top-left" },
@@ -76,6 +94,10 @@ export const HOME_WATERMARK_ART: readonly CulturalWatermarkArt[] = [
 export const HOW_IT_WORKS_WATERMARK_ART: readonly CulturalWatermarkArt[] = [
   { id: "chevron-braid", placement: "top-left" },
   { id: "stepped-meander", placement: "bottom-right" },
+];
+
+export const SERVICE_MENU_WATERMARK_ART: readonly CulturalWatermarkArt[] = [
+  { id: "diamond-weave", placement: "content-fill", color: "brand" },
 ];
 
 export const SERVICE_WATERMARK_ART: Record<

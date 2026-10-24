@@ -15,6 +15,9 @@
   --accent-soft: #f1f7e5;
   --deep: #004455;
   --on-brand: #ffffff;
+  --culture-green: #078930;
+  --culture-gold: #fcd116;
+  --culture-red: #e31b23;
   --font-body: "Segoe UI", Arial, sans-serif;
 }
 
@@ -33,6 +36,9 @@
   --color-accent-soft: var(--accent-soft);
   --color-deep: var(--deep);
   --color-on-brand: var(--on-brand);
+  --color-culture-green: var(--culture-green);
+  --color-culture-gold: var(--culture-gold);
+  --color-culture-red: var(--culture-red);
   --font-sans: var(--font-body);
 }
 
@@ -101,6 +107,16 @@ body {
   will-change: transform, opacity;
 }
 
+.watermark-fade-left {
+  -webkit-mask-image: linear-gradient(to right, black, transparent);
+  mask-image: linear-gradient(to right, black, transparent);
+}
+
+.watermark-fade-right {
+  -webkit-mask-image: linear-gradient(to left, black, transparent);
+  mask-image: linear-gradient(to left, black, transparent);
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
@@ -113,4 +129,3 @@ body {
     opacity: 1 !important;
   }
 }
-

@@ -4,6 +4,8 @@ import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { ArrowRight, ChevronDown } from "lucide-react";
 import { SERVICE_PAGES } from "../../constants/services";
+import { SERVICE_MENU_WATERMARK_ART } from "../../constants/cultural-watermarks";
+import { CulturalWatermarks } from "../home/CulturalWatermarks";
 
 export function SiteHeader() {
   const [servicesOpen, setServicesOpen] = useState(false);
@@ -71,10 +73,12 @@ export function SiteHeader() {
 
       {servicesOpen && (
         <div
-          className="absolute left-1/2 top-full z-50 hidden w-screen -translate-x-1/2 border-y border-border bg-surface shadow-xl md:block"
+          className="absolute inset-x-0 top-full z-50 hidden w-full overflow-hidden border-y border-border bg-surface shadow-xl md:block"
           id="services-mega-menu"
         >
-          <div className="mx-auto grid max-w-7xl gap-5 px-4 py-5 sm:px-6 md:grid-cols-[minmax(0,1fr)_15rem] lg:gap-8 lg:px-8 lg:py-7">
+          <CulturalWatermarks designs={SERVICE_MENU_WATERMARK_ART} visibility="prominent" />
+          <div className="relative z-10 mx-auto grid max-w-7xl gap-5 px-4 py-5 sm:px-6 md:grid-cols-[minmax(0,1fr)_15rem] lg:gap-8 lg:px-8 lg:py-7 xl:grid-cols-[7rem_minmax(0,1fr)_15rem_7rem]">
+            <div aria-hidden="true" className="hidden xl:block" />
             <div>
               <div className="mb-3 flex items-center gap-2 border-b border-border pb-3">
                 <span aria-hidden="true" className="h-2 w-2 rounded-full bg-accent" />
@@ -116,6 +120,7 @@ export function SiteHeader() {
                 <ArrowRight aria-hidden="true" className="h-4 w-4" />
               </Link>
             </aside>
+            <div aria-hidden="true" className="hidden xl:block" />
           </div>
         </div>
       )}

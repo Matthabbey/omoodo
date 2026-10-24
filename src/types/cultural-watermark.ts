@@ -14,11 +14,28 @@ export type CulturalWatermarkPlacement =
   | "top-left"
   | "bottom-right"
   | "top-right"
-  | "bottom-left";
+  | "bottom-left"
+  | "rail-left-top"
+  | "rail-left-center"
+  | "rail-left-bottom"
+  | "rail-right-top"
+  | "rail-right-center"
+  | "rail-right-bottom"
+  | "rail-left-fill"
+  | "rail-right-fill"
+  | "content-fill";
+
+export type CulturalWatermarkColor =
+  | "brand"
+  | "accent"
+  | "african-green"
+  | "african-gold"
+  | "african-red";
 
 export interface CulturalWatermarkArt {
   readonly id: CulturalWatermarkId;
   readonly placement: CulturalWatermarkPlacement;
+  readonly color?: CulturalWatermarkColor;
 }
 
 export interface CulturalWatermarkPattern {
