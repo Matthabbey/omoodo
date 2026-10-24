@@ -107,13 +107,13 @@ export function HeroQuickRequest({
 
       {/* Submit / Action Button */}
       <button
-        className="inline-flex shrink-0 items-center justify-center rounded-full bg-brand-accent px-6 py-3 text-xs font-bold text-on-brand transition-all duration-200 hover:bg-brand focus-visible:outline-2 focus-visible:outline-brand"
+        className="inline-flex shrink-0 items-center justify-center gap-2 rounded-full bg-brand-accent px-6 py-3 text-xs font-bold leading-none text-on-brand transition-all duration-200 hover:bg-brand focus-visible:outline-2 focus-visible:outline-brand [&_svg]:shrink-0"
         type="submit"
       >
         <span>Get Started</span>
         <svg
           aria-hidden="true"
-          className="ml-1.5 h-3.5 w-3.5"
+          className="h-3.5 w-3.5"
           fill="none"
           stroke="currentColor"
           strokeWidth="2.5"

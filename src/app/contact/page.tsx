@@ -17,8 +17,8 @@ export default function ContactPage() {
       data-contact-page="true"
     >
       <CulturalWatermarks designs={HOME_WATERMARK_ART} />
-      <div className="relative z-10 mx-auto grid h-full min-h-0 max-w-7xl grid-rows-[auto_minmax(0,1fr)] gap-6 lg:grid-rows-1 lg:grid-cols-[0.8fr_1.2fr] lg:gap-16">
-        <section className="min-h-0">
+      <div className="relative z-10 mx-auto grid h-full min-h-0 min-w-0 max-w-7xl grid-cols-[minmax(0,1fr)] grid-rows-[auto_minmax(0,1fr)] gap-6 lg:grid-rows-1 lg:grid-cols-[minmax(0,0.8fr)_minmax(0,1.2fr)] lg:gap-16">
+        <section className="min-h-0 min-w-0">
           <p className="text-xs font-bold uppercase tracking-widest text-brand">Contact Omoodo</p>
           <h1 className="mt-3 text-3xl font-bold leading-tight tracking-tight sm:mt-4 sm:text-5xl">
             Let’s take care of the details.
@@ -33,7 +33,7 @@ export default function ContactPage() {
           </div>
         </section>
 
-        <section aria-label="Contact request form" className="flex min-h-0 flex-col overflow-hidden rounded-3xl border border-border bg-surface p-4 shadow-sm sm:p-8">
+        <section aria-label="Contact request form" className="flex min-h-0 min-w-0 flex-col overflow-hidden rounded-3xl border border-border bg-surface p-4 shadow-sm sm:p-8">
           <Suspense fallback={<div aria-label="Loading contact form" className="h-96 animate-pulse rounded-2xl bg-brand-soft" />}>
             <ContactForm />
           </Suspense>

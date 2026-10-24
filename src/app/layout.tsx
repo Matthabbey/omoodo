@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { SiteFooter } from "../components/layout/SiteFooter";
 import { SiteHeader } from "../components/layout/SiteHeader";
+import { CustomScrollbars } from "../components/layout/CustomScrollbars";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -18,6 +19,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         <SiteHeader />
         {children}
         <SiteFooter />
+        <CustomScrollbars />
       </body>
     </html>
   );

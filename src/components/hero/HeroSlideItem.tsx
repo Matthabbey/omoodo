@@ -84,7 +84,7 @@ export function HeroSlideItem({
               }`}
           >
             <Link
-              className="inline-flex items-center justify-center gap-2 rounded-full bg-brand px-5 py-2 text-xs font-semibold text-on-brand shadow-sm transition-all duration-300 hover:bg-brand-deep hover:shadow-md focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand sm:text-sm"
+              className="inline-flex items-center justify-center gap-2 rounded-full bg-brand px-5 py-2 text-xs font-semibold leading-none text-on-brand shadow-sm transition-all duration-300 hover:bg-brand-deep hover:shadow-md focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand sm:text-sm [&_svg]:shrink-0"
               href={slide.primaryBtnHref}
             >
               <span>{slide.primaryBtnText}</span>
@@ -92,7 +92,7 @@ export function HeroSlideItem({
             </Link>
 
             <Link
-              className="inline-flex items-center justify-center rounded-full border border-white/40 bg-white/10 px-5 py-2 text-xs font-semibold text-white shadow-sm backdrop-blur-md transition-all duration-300 hover:border-white hover:bg-white/20 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white sm:text-sm"
+              className="inline-flex items-center justify-center rounded-full border border-white/40 bg-white/10 px-5 py-2 text-xs font-semibold leading-none text-white shadow-sm backdrop-blur-md transition-all duration-300 hover:border-white hover:bg-white/20 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white sm:text-sm"
               href={slide.secondaryBtnHref}
             >
               {slide.secondaryBtnText}

@@ -169,9 +169,9 @@ export function ContactForm() {
   }
 
   return (
-    <form className="grid h-full min-h-0 grid-rows-[auto_minmax(0,1fr)_auto_auto] gap-3 sm:gap-5" onSubmit={handleSubmit} ref={formRef}>
+    <form className="grid h-full min-h-0 min-w-0 grid-rows-[auto_minmax(0,1fr)_auto_auto] gap-3 sm:gap-5" onSubmit={handleSubmit} ref={formRef}>
       <ContactStepper activeIndex={activeIndex} steps={steps} />
-      <div className="min-h-0 overflow-y-auto overscroll-contain pr-1" ref={formBodyRef}>
+      <div className="min-h-0 min-w-0 overflow-y-auto overscroll-contain pr-1" ref={formBodyRef}>
         {steps.map((step, index) => (
           <ContactStepPanel
             active={index === activeIndex}

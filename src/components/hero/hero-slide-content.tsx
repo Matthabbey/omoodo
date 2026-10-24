@@ -46,13 +46,13 @@ export function HeroSlideContent({ slide }: HeroSlideContentProps) {
 
       <div className="mt-8 flex flex-wrap items-center gap-4">
         <Link
-          className="inline-flex items-center justify-center rounded-full bg-brand px-7 py-3.5 text-sm font-semibold text-on-brand shadow-sm transition-all duration-200 hover:bg-brand-deep hover:shadow-md focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand"
+          className="inline-flex items-center justify-center gap-2 rounded-full bg-brand px-7 py-3.5 text-sm font-semibold leading-none text-on-brand shadow-sm transition-all duration-200 hover:bg-brand-deep hover:shadow-md focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand [&_svg]:shrink-0"
           href={slide.primaryCta.href}
         >
           {slide.primaryCta.label}
           <svg
             aria-hidden="true"
-            className="ml-2 h-4 w-4"
+            className="h-4 w-4"
             fill="none"
             stroke="currentColor"
             strokeWidth="2.2"
@@ -66,7 +66,7 @@ export function HeroSlideContent({ slide }: HeroSlideContentProps) {
           </svg>
         </Link>
         <Link
-          className="inline-flex items-center justify-center rounded-full border border-border bg-surface px-6 py-3.5 text-sm font-semibold text-foreground transition-all duration-200 hover:border-brand-accent hover:bg-brand-soft hover:text-brand-deep focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand"
+          className="inline-flex items-center justify-center rounded-full border border-border bg-surface px-6 py-3.5 text-sm font-semibold leading-none text-foreground transition-all duration-200 hover:border-brand-accent hover:bg-brand-soft hover:text-brand-deep focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand"
           href={slide.secondaryCta.href}
         >
           {slide.secondaryCta.label}

@@ -220,7 +220,7 @@ export function DateTimePicker({
               })}
             </div>
             <button
-              className="mt-3 flex w-full items-center justify-center gap-2 rounded-lg py-2 text-xs font-semibold text-brand transition hover:bg-brand-soft"
+              className="mt-3 flex w-full items-center justify-center gap-2 rounded-lg py-2 text-xs font-semibold leading-none text-brand transition hover:bg-brand-soft [&_svg]:shrink-0"
               onClick={() => {
                 updateValue("");
                 setVisibleMonth(new Date());

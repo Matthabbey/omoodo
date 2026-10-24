@@ -33,6 +33,15 @@ export function SiteHeader() {
     };
   }, []);
 
+  useEffect(() => {
+    document.documentElement.classList.toggle("contact-page-locked", pathname === "/contact");
+    document.body.classList.toggle("contact-page-locked", pathname === "/contact");
+    return () => {
+      document.documentElement.classList.remove("contact-page-locked");
+      document.body.classList.remove("contact-page-locked");
+    };
+  }, [pathname]);
+
   return (
     <header
       className="sticky top-0 z-50 border-b border-border bg-surface/75 backdrop-blur-md"
@@ -52,7 +61,7 @@ export function SiteHeader() {
           <button
             aria-controls="services-mega-menu"
             aria-expanded={servicesOpen}
-            className={`flex items-center gap-2 rounded-xl px-4 py-2.5 text-sm font-semibold transition ${
+            className={`inline-flex items-center justify-center gap-2 rounded-xl px-4 py-2.5 text-sm font-semibold leading-none transition ${
               servicesOpen || isServicePage
                 ? "bg-brand-soft text-brand"
                 : "text-foreground hover:bg-brand-soft hover:text-brand"
@@ -61,7 +70,7 @@ export function SiteHeader() {
             type="button"
           >
             Our services
-            <ChevronDown aria-hidden="true" className={`h-4 w-4 transition-transform ${servicesOpen ? "rotate-180" : ""}`} />
+            <ChevronDown aria-hidden="true" className={`h-4 w-4 shrink-0 transition-transform ${servicesOpen ? "rotate-180" : ""}`} />
           </button>
           <Link
             aria-current={pathname === "/how-it-works" ? "page" : undefined}
@@ -88,18 +97,18 @@ export function SiteHeader() {
         </nav>
 
         <Link
-          className="shrink-0 rounded-full bg-brand px-3 py-2.5 text-xs font-semibold text-on-brand transition hover:bg-brand-deep focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand sm:px-5 sm:text-sm"
+          className="inline-flex shrink-0 items-center justify-center rounded-full bg-brand px-3 py-2.5 text-xs font-semibold leading-none text-on-brand transition hover:bg-brand-deep focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand sm:px-5 sm:text-sm"
           href="/contact"
         >
           Request support
         </Link>
       </div>
 
-      <nav aria-label="Services" className="flex gap-2 overflow-x-auto px-4 pb-3 text-sm font-semibold text-muted md:hidden">
+      <nav aria-label="Services" className="flex flex-wrap justify-center gap-1 overflow-hidden px-2 pb-2 text-xs font-semibold text-muted md:hidden">
         {SERVICE_PAGES.map((service) => (
           <Link
             aria-current={pathname === `/${service.slug}` ? "page" : undefined}
-            className={`shrink-0 rounded-lg px-3 py-2 transition ${
+            className={`shrink-0 rounded-lg px-2 py-1.5 transition ${
               pathname === `/${service.slug}`
                 ? "bg-brand-soft text-brand"
                 : "hover:bg-brand-soft hover:text-brand"
@@ -112,7 +121,7 @@ export function SiteHeader() {
         ))}
         <Link
           aria-current={pathname === "/contact" ? "page" : undefined}
-          className={`shrink-0 rounded-lg px-3 py-2 transition ${
+          className={`shrink-0 rounded-lg px-2 py-1.5 transition ${
             pathname === "/contact"
               ? "bg-brand-soft text-brand"
               : "hover:bg-brand-soft hover:text-brand"
@@ -171,7 +180,7 @@ export function SiteHeader() {
                 See how we coordinate trusted help around your needs, at home or across the city.
               </p>
               <Link
-                className="relative mt-5 inline-flex items-center gap-2 rounded-full bg-surface px-4 py-2.5 text-sm font-bold text-brand transition hover:bg-brand-soft"
+                className="relative mt-5 inline-flex items-center justify-center gap-2 rounded-full bg-surface px-4 py-2.5 text-sm font-bold leading-none text-brand transition hover:bg-brand-soft [&_svg]:shrink-0"
                 href="/how-it-works"
                 onClick={() => setServicesOpen(false)}
               >

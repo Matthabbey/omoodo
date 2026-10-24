@@ -33,7 +33,7 @@ export default function HowItWorksPage() {
         </ol>
 
         <Link
-          className="mt-9 inline-flex items-center gap-2 rounded-full bg-brand px-6 py-3 font-semibold text-on-brand transition hover:bg-brand-deep"
+          className="mt-9 inline-flex items-center justify-center gap-2 rounded-full bg-brand px-6 py-3 font-semibold leading-none text-on-brand transition hover:bg-brand-deep [&_svg]:shrink-0"
           href="/concierge"
         >
           Explore concierge support <ArrowRight aria-hidden="true" className="h-4 w-4" />
