@@ -71,19 +71,16 @@ export function Select({
 
   React.useLayoutEffect(() => {
     if (!isOpen) return;
-
     function updatePosition() {
       const trigger = triggerRef.current;
       const listbox = listboxRef.current;
       if (!trigger || !listbox) return;
-
       const bounds = trigger.getBoundingClientRect();
       const spaceAbove = bounds.top - 12;
       const spaceBelow = window.innerHeight - bounds.bottom - 12;
       const desiredHeight = Math.min(listbox.scrollHeight, 256);
       const opensAbove = spaceBelow < desiredHeight && spaceAbove > spaceBelow;
-      const availableSpace = opensAbove ? spaceAbove : spaceBelow;
-      const maxHeight = Math.max(80, Math.min(256, availableSpace));
+      const maxHeight = Math.max(80, Math.min(256, opensAbove ? spaceAbove : spaceBelow));
       const top = opensAbove ? bounds.top - maxHeight - 6 : bounds.bottom + 6;
       setPopupPosition({
         left: Math.max(8, Math.min(bounds.left, window.innerWidth - bounds.width - 8)),
@@ -92,7 +89,6 @@ export function Select({
         maxHeight,
       });
     }
-
     updatePosition();
     window.addEventListener("resize", updatePosition);
     window.addEventListener("scroll", updatePosition, true);

@@ -36,7 +36,7 @@ export function HowItWorksFlow() {
   }, []);
 
   return (
-    <div className="relative mt-12 sm:mt-16">
+    <div className="relative mt-8 sm:mt-10">
       <div aria-hidden="true" className="absolute bottom-8 left-5 top-8 w-px bg-border md:left-1/2" />
       <ol className="space-y-6 sm:space-y-8">
         {HOW_IT_WORKS_STEPS.map((step, index) => {

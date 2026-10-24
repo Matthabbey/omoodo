@@ -9,12 +9,11 @@ export const metadata: Metadata = { title: "How it works" };
 
 export default function HowItWorksPage() {
   return (
-    <main className="relative isolate min-h-screen overflow-hidden bg-background px-4 py-14 text-foreground sm:px-6 sm:py-20 lg:px-8">
+    <main className="relative isolate min-h-screen overflow-hidden bg-background px-4 pb-14 pt-6 text-foreground sm:px-6 sm:pb-20 sm:pt-8 lg:px-8">
       <CulturalWatermarks designs={HOW_IT_WORKS_WATERMARK_ART} />
       <div className="relative z-10 mx-auto max-w-7xl">
         <div className="mx-auto max-w-3xl text-center">
-          <p className="text-xs font-bold uppercase tracking-widest text-brand">How we work</p>
-          <h1 className="mt-4 text-4xl font-bold leading-tight tracking-tight sm:text-5xl lg:text-6xl">
+          <h1 className="text-4xl font-bold leading-tight tracking-tight sm:text-5xl lg:text-6xl">
             We make getting things handled simple and transparent.
           </h1>
           <p className="mx-auto mt-5 max-w-2xl text-lg leading-8 text-muted">

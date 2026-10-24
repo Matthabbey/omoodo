@@ -1,5 +1,6 @@
 import { CulturalWatermarks } from "./CulturalWatermarks";
 import { HOME_WATERMARK_ART } from "../../constants/cultural-watermarks";
+import { ScrollReveal } from "./ScrollReveal";
 
 export function ValuesSection() {
   return (
@@ -10,7 +11,7 @@ export function ValuesSection() {
     >
       <CulturalWatermarks designs={HOME_WATERMARK_ART} />
 
-      <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <ScrollReveal className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="grid gap-8 lg:grid-cols-[1fr_0.72fr] lg:items-end">
           <div className="max-w-3xl">
             <span className="inline-flex items-center gap-3 text-xs font-bold uppercase tracking-[0.18em] text-brand">
@@ -105,7 +106,7 @@ export function ValuesSection() {
           </p>
           <p className="text-sm text-muted">Omoodo Concierge & Lifestyle Services</p>
         </div>
-      </div>
+      </ScrollReveal>
     </section>
   );
 }
