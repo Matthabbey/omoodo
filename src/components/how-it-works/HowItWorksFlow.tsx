@@ -10,23 +10,28 @@ import {
 import { CulturalWatermarks } from "../home/CulturalWatermarks";
 
 export function HowItWorksFlow() {
-  const [visibleSteps, setVisibleSteps] = useState<readonly number[]>([]);
+  const [stepPositions, setStepPositions] = useState<
+    Readonly<Record<number, "above" | "visible" | "below">>
+  >({});
   const itemRefs = useRef<(HTMLLIElement | null)[]>([]);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
-          if (!entry.isIntersecting) return;
           const index = Number((entry.target as HTMLElement).dataset.step);
           if (!Number.isInteger(index)) return;
-          setVisibleSteps((current) =>
-            current.includes(index) ? current : [...current, index],
+          const position = entry.isIntersecting
+            ? "visible"
+            : entry.boundingClientRect.top < 0
+              ? "above"
+              : "below";
+          setStepPositions((current) =>
+            current[index] === position ? current : { ...current, [index]: position },
           );
-          observer.unobserve(entry.target);
         });
       },
-      { rootMargin: "0px 0px -12%", threshold: 0.15 },
+      { rootMargin: "-8% 0px", threshold: 0.12 },
     );
 
     itemRefs.current.forEach((item) => {
@@ -40,7 +45,8 @@ export function HowItWorksFlow() {
       <div aria-hidden="true" className="absolute bottom-8 left-5 top-8 w-px bg-border md:left-1/2" />
       <ol className="space-y-6 sm:space-y-8">
         {HOW_IT_WORKS_STEPS.map((step, index) => {
-          const isVisible = visibleSteps.includes(index);
+          const position = stepPositions[index] ?? "below";
+          const isVisible = position === "visible";
           const cardArt = HOW_IT_WORKS_CARD_ART[index];
           const cardStyle = HOW_IT_WORKS_CARD_STYLES[index];
           const cardColumn = index % 2 === 0 ? "md:col-start-1" : "md:col-start-3";
@@ -63,7 +69,9 @@ export function HowItWorksFlow() {
 
               <article
                 className={`relative col-start-2 row-start-1 overflow-hidden rounded-3xl border p-5 shadow-sm transition-all duration-700 sm:p-7 md:translate-y-0 ${cardStyle.surface} ${cardColumn} ${
-                  isVisible ? "translate-x-0 translate-y-0 opacity-100" : `translate-y-6 opacity-0 ${hiddenOffset}`
+                  isVisible
+                    ? "translate-x-0 translate-y-0 opacity-100"
+                    : `${position === "above" ? "-translate-y-6" : "translate-y-6"} opacity-0 ${hiddenOffset}`
                 } motion-reduce:translate-x-0 motion-reduce:translate-y-0 motion-reduce:opacity-100 motion-reduce:transition-none`}
               >
                 <CulturalWatermarks designs={cardArt} visibility="prominent" />

@@ -3,6 +3,7 @@ import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { HOW_IT_WORKS_WATERMARK_ART } from "../../constants/cultural-watermarks";
 import { CulturalWatermarks } from "../../components/home/CulturalWatermarks";
+import { ScrollReveal } from "../../components/home/ScrollReveal";
 import { HowItWorksFlow } from "../../components/how-it-works/HowItWorksFlow";
 
 export const metadata: Metadata = { title: "How it works" };
@@ -12,14 +13,14 @@ export default function HowItWorksPage() {
     <main className="relative isolate min-h-screen overflow-hidden bg-background px-4 pb-14 pt-6 text-foreground sm:px-6 sm:pb-20 sm:pt-8 lg:px-8">
       <CulturalWatermarks designs={HOW_IT_WORKS_WATERMARK_ART} />
       <div className="relative z-10 mx-auto max-w-7xl">
-        <div className="mx-auto max-w-3xl text-center">
+        <ScrollReveal className="mx-auto max-w-3xl text-center" effect="scale">
           <h1 className="text-4xl font-bold leading-tight tracking-tight sm:text-5xl lg:text-6xl">
             We make getting things handled simple and transparent.
           </h1>
           <p className="mx-auto mt-5 max-w-2xl text-lg leading-8 text-muted">
             From the first conversation to final confirmation, you always know what is happening and what comes next.
           </p>
-        </div>
+        </ScrollReveal>
 
         <HowItWorksFlow />
 
