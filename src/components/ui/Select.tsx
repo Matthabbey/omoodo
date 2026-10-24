@@ -24,6 +24,13 @@ export interface SelectProps {
   readonly id?: string;
 }
 
+interface PopupPosition {
+  readonly left: number;
+  readonly top: number;
+  readonly width: number;
+  readonly maxHeight: number;
+}
+
 export function Select({
   options,
   value,
@@ -39,11 +46,14 @@ export function Select({
   id,
 }: SelectProps) {
   const [isOpen, setIsOpen] = React.useState(false);
+  const [popupPosition, setPopupPosition] = React.useState<PopupPosition | null>(null);
   const [internalValue, setInternalValue] = React.useState(
     defaultValue ?? options[0]?.value ?? ""
   );
   const selectedValue = value !== undefined ? value : internalValue;
   const containerRef = React.useRef<HTMLDivElement>(null);
+  const triggerRef = React.useRef<HTMLButtonElement>(null);
+  const listboxRef = React.useRef<HTMLUListElement>(null);
   const selectedOption = options.find((opt) => opt.value === selectedValue);
   const selectId = id ?? label?.toLowerCase().replace(/\s+/g, "-") ?? "select";
 
@@ -57,6 +67,39 @@ export function Select({
       document.addEventListener("mousedown", handleClickOutside);
       return () => document.removeEventListener("mousedown", handleClickOutside);
     }
+  }, [isOpen]);
+
+  React.useLayoutEffect(() => {
+    if (!isOpen) return;
+
+    function updatePosition() {
+      const trigger = triggerRef.current;
+      const listbox = listboxRef.current;
+      if (!trigger || !listbox) return;
+
+      const bounds = trigger.getBoundingClientRect();
+      const spaceAbove = bounds.top - 12;
+      const spaceBelow = window.innerHeight - bounds.bottom - 12;
+      const desiredHeight = Math.min(listbox.scrollHeight, 256);
+      const opensAbove = spaceBelow < desiredHeight && spaceAbove > spaceBelow;
+      const availableSpace = opensAbove ? spaceAbove : spaceBelow;
+      const maxHeight = Math.max(80, Math.min(256, availableSpace));
+      const top = opensAbove ? bounds.top - maxHeight - 6 : bounds.bottom + 6;
+      setPopupPosition({
+        left: Math.max(8, Math.min(bounds.left, window.innerWidth - bounds.width - 8)),
+        top: Math.max(8, Math.min(top, window.innerHeight - maxHeight - 8)),
+        width: bounds.width,
+        maxHeight,
+      });
+    }
+
+    updatePosition();
+    window.addEventListener("resize", updatePosition);
+    window.addEventListener("scroll", updatePosition, true);
+    return () => {
+      window.removeEventListener("resize", updatePosition);
+      window.removeEventListener("scroll", updatePosition, true);
+    };
   }, [isOpen]);
 
   const handleSelect = (val: string) => {
@@ -102,6 +145,7 @@ export function Select({
         )}
         disabled={disabled}
         id={selectId}
+        ref={triggerRef}
         onClick={() => setIsOpen((prev) => !prev)}
         onKeyDown={handleKeyDown}
         type="button"
@@ -122,8 +166,10 @@ export function Select({
       {isOpen && (
         <ul
           aria-label={label ?? "Select options"}
-          className="absolute top-[calc(100%+6px)] left-0 right-0 z-50 max-h-64 overflow-y-auto rounded-2xl border border-border bg-surface p-1.5 shadow-2xl backdrop-blur-md"
+          className="brand-popup-shadow fixed z-50 overflow-y-auto rounded-2xl border border-border bg-surface p-1.5 backdrop-blur-md"
           role="listbox"
+          ref={listboxRef}
+          style={popupPosition ?? undefined}
         >
           {options.map((opt) => {
             const isSelected = opt.value === selectedValue;

@@ -2,14 +2,17 @@
 
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { ArrowRight, ChevronDown } from "lucide-react";
 import { SERVICE_PAGES } from "../../constants/services";
 import { SERVICE_MENU_WATERMARK_ART } from "../../constants/cultural-watermarks";
 import { CulturalWatermarks } from "../home/CulturalWatermarks";
 
 export function SiteHeader() {
+  const pathname = usePathname();
   const [servicesOpen, setServicesOpen] = useState(false);
   const headerRef = useRef<HTMLElement>(null);
+  const isServicePage = SERVICE_PAGES.some((service) => pathname === `/${service.slug}`);
 
   useEffect(() => {
     function closeOnOutsideClick(event: MouseEvent) {
@@ -31,9 +34,17 @@ export function SiteHeader() {
   }, []);
 
   return (
-    <header className="relative z-50 border-b border-border bg-surface" ref={headerRef}>
+    <header
+      className="sticky top-0 z-50 border-b border-border bg-surface/75 backdrop-blur-md"
+      ref={headerRef}
+    >
       <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-3 sm:px-6 lg:px-8">
-        <Link aria-label="Omoodo home" className="shrink-0 text-2xl font-black tracking-tight text-brand" href="/">
+        <Link
+          aria-current={pathname === "/" ? "page" : undefined}
+          aria-label="Omoodo home"
+          className="shrink-0 text-2xl font-black tracking-tight text-brand"
+          href="/"
+        >
           Omoodo<span className="text-accent">.</span>
         </Link>
 
@@ -42,7 +53,9 @@ export function SiteHeader() {
             aria-controls="services-mega-menu"
             aria-expanded={servicesOpen}
             className={`flex items-center gap-2 rounded-xl px-4 py-2.5 text-sm font-semibold transition ${
-              servicesOpen ? "bg-brand-soft text-brand" : "text-foreground hover:bg-brand-soft hover:text-brand"
+              servicesOpen || isServicePage
+                ? "bg-brand-soft text-brand"
+                : "text-foreground hover:bg-brand-soft hover:text-brand"
             }`}
             onClick={() => setServicesOpen((open) => !open)}
             type="button"
@@ -50,30 +63,69 @@ export function SiteHeader() {
             Our services
             <ChevronDown aria-hidden="true" className={`h-4 w-4 transition-transform ${servicesOpen ? "rotate-180" : ""}`} />
           </button>
-          <Link className="rounded-xl px-4 py-2.5 text-sm font-semibold text-foreground transition hover:bg-brand-soft hover:text-brand" href="/how-it-works">
+          <Link
+            aria-current={pathname === "/how-it-works" ? "page" : undefined}
+            className={`rounded-xl px-4 py-2.5 text-sm font-semibold transition ${
+              pathname === "/how-it-works"
+                ? "bg-brand-soft text-brand"
+                : "text-foreground hover:bg-brand-soft hover:text-brand"
+            }`}
+            href="/how-it-works"
+          >
             How it works
+          </Link>
+          <Link
+            aria-current={pathname === "/contact" ? "page" : undefined}
+            className={`rounded-xl px-4 py-2.5 text-sm font-semibold transition ${
+              pathname === "/contact"
+                ? "bg-brand-soft text-brand"
+                : "text-foreground hover:bg-brand-soft hover:text-brand"
+            }`}
+            href="/contact"
+          >
+            Contact
           </Link>
         </nav>
 
         <Link
           className="shrink-0 rounded-full bg-brand px-3 py-2.5 text-xs font-semibold text-on-brand transition hover:bg-brand-deep focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand sm:px-5 sm:text-sm"
-          href="/concierge"
+          href="/contact"
         >
           Request support
         </Link>
       </div>
 
-      <nav aria-label="Services" className="flex gap-6 overflow-x-auto px-4 pb-3 text-sm font-semibold text-muted md:hidden">
+      <nav aria-label="Services" className="flex gap-2 overflow-x-auto px-4 pb-3 text-sm font-semibold text-muted md:hidden">
         {SERVICE_PAGES.map((service) => (
-          <Link className="shrink-0 transition hover:text-brand" href={`/${service.slug}`} key={service.slug}>
+          <Link
+            aria-current={pathname === `/${service.slug}` ? "page" : undefined}
+            className={`shrink-0 rounded-lg px-3 py-2 transition ${
+              pathname === `/${service.slug}`
+                ? "bg-brand-soft text-brand"
+                : "hover:bg-brand-soft hover:text-brand"
+            }`}
+            href={`/${service.slug}`}
+            key={service.slug}
+          >
             {service.name}
           </Link>
         ))}
+        <Link
+          aria-current={pathname === "/contact" ? "page" : undefined}
+          className={`shrink-0 rounded-lg px-3 py-2 transition ${
+            pathname === "/contact"
+              ? "bg-brand-soft text-brand"
+              : "hover:bg-brand-soft hover:text-brand"
+          }`}
+          href="/contact"
+        >
+          Contact
+        </Link>
       </nav>
 
       {servicesOpen && (
         <div
-          className="absolute inset-x-0 top-full z-50 hidden w-full overflow-hidden border-y border-border bg-surface shadow-xl md:block"
+          className="brand-popup-shadow absolute inset-x-0 top-full z-50 hidden w-full overflow-hidden border-y border-border bg-surface md:block"
           id="services-mega-menu"
         >
           <CulturalWatermarks designs={SERVICE_MENU_WATERMARK_ART} visibility="prominent" />
@@ -87,12 +139,19 @@ export function SiteHeader() {
               <div className="grid gap-1 sm:grid-cols-2">
                 {SERVICE_PAGES.map((service) => (
                   <Link
-                    className="group rounded-xl border border-transparent p-3 transition hover:border-border hover:bg-brand-soft/50"
+                    aria-current={pathname === `/${service.slug}` ? "page" : undefined}
+                    className={`group rounded-xl border p-3 transition ${
+                      pathname === `/${service.slug}`
+                        ? "border-border bg-brand-soft/70"
+                        : "border-transparent hover:border-border hover:bg-brand-soft/50"
+                    }`}
                     href={`/${service.slug}`}
                     key={service.slug}
                     onClick={() => setServicesOpen(false)}
                   >
-                    <span className="flex items-center justify-between gap-3 text-sm font-bold text-foreground group-hover:text-brand">
+                    <span className={`flex items-center justify-between gap-3 text-sm font-bold ${
+                      pathname === `/${service.slug}` ? "text-brand" : "text-foreground group-hover:text-brand"
+                    }`}>
                       {service.name}
                       <ArrowRight aria-hidden="true" className="h-4 w-4 shrink-0 text-brand opacity-0 transition group-hover:translate-x-0.5 group-hover:opacity-100" />
                     </span>

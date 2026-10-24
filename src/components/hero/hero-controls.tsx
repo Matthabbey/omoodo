@@ -19,13 +19,9 @@ export function HeroControls({
   onTogglePlay,
   onSelectIndex,
 }: HeroControlsProps) {
-  const currentFormatted = String(currentIndex + 1).padStart(2, "0");
-  const totalFormatted = String(totalSlides).padStart(2, "0");
-
   return (
     <div className="flex flex-wrap items-center justify-between gap-4 pt-4 border-t border-border/60">
-      {/* Slide Navigation Pill: < 01 / 05 > */}
-      <div className="inline-flex items-center gap-2 rounded-full border border-border bg-surface px-2.5 py-1.5 shadow-xs">
+      <div className="inline-flex items-center gap-1 rounded-full border border-border bg-surface px-1.5 py-1.5 shadow-xs">
         <button
           aria-label="Previous slide"
           className="flex h-8 w-8 items-center justify-center rounded-full text-muted transition hover:bg-brand-soft hover:text-brand-deep focus-visible:outline-2 focus-visible:outline-brand"
@@ -43,10 +39,6 @@ export function HeroControls({
             <path d="M15 19l-7-7 7-7" strokeLinecap="round" strokeLinejoin="round" />
           </svg>
         </button>
-
-        <span className="px-2 text-xs font-semibold tabular-nums text-foreground">
-          {currentFormatted} <span className="text-muted/60">/</span> {totalFormatted}
-        </span>
 
         <button
           aria-label="Next slide"

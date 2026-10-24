@@ -50,8 +50,41 @@ html {
   scroll-behavior: smooth;
 }
 
+html:has(body > main[data-contact-page="true"]) {
+  height: 100%;
+  overflow: hidden;
+  overscroll-behavior: none;
+}
+
 body {
   margin: 0;
+}
+
+body:has([data-contact-page="true"]) {
+  position: fixed;
+  inset: 0;
+  display: grid;
+  width: 100%;
+  height: 100dvh;
+  grid-template-rows: auto minmax(0, 1fr) auto;
+  overflow: hidden;
+  overscroll-behavior: none;
+}
+
+body:has([data-contact-page="true"]) > header,
+body:has([data-contact-page="true"]) > footer {
+  min-height: 0;
+}
+
+body:has([data-contact-page="true"]) > main[data-contact-page="true"] {
+  min-height: 0;
+  height: 100%;
+}
+
+.brand-popup-shadow {
+  box-shadow:
+    0 14px 34px color-mix(in srgb, var(--brand) 20%, transparent),
+    0 3px 10px color-mix(in srgb, var(--brand) 12%, transparent);
 }
 
 ::selection {

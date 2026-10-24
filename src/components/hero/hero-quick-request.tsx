@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import { SERVICE_PATHS } from "../../constants/services";
+import { getContactHref } from "../../constants/contact";
 import type { HeroPillarId, QuickRequestLocation } from "../../types/hero";
 
 interface HeroQuickRequestProps {
@@ -21,7 +21,7 @@ export function HeroQuickRequest({
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    router.push(SERVICE_PATHS[currentPillar]);
+    router.push(getContactHref(currentPillar, selectedLocation));
   };
 
   return (

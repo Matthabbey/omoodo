@@ -165,12 +165,6 @@ export function HeroSlider() {
           })}
         </div>
 
-        {/* Slide Counter */}
-        <div className="ml-2 flex items-center text-xs font-semibold tracking-wider text-slate-300">
-          <span className="font-bold text-white">0{currentSlideIndex + 1}</span>
-          <span className="mx-1 opacity-50">/</span>
-          <span>0{totalSlides}</span>
-        </div>
       </div>
     </section>
   );

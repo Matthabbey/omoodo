@@ -3,7 +3,8 @@
 import * as React from "react";
 import { useRouter } from "next/navigation";
 import { ArrowRight, MapPin, Briefcase } from "lucide-react";
-import { SERVICE_OPTIONS, SERVICE_PATHS } from "../../constants/services";
+import { SERVICE_OPTIONS } from "../../constants/services";
+import { getContactHref } from "../../constants/contact";
 import type { HeroPillarId } from "../../types/hero";
 import { Button, Select } from "../ui";
 
@@ -15,7 +16,7 @@ export function HeroQuickInquiry() {
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    router.push(SERVICE_PATHS[selectedService]);
+    router.push(getContactHref(selectedService, selectedLocation));
   };
 
   return (

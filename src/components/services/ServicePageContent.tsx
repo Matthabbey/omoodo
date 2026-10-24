@@ -40,7 +40,7 @@ export function ServicePageContent({ service }: ServicePageContentProps) {
             </ul>
             <Link
               className="mt-8 inline-flex items-center gap-2 rounded-full bg-brand px-6 py-3 font-semibold text-on-brand transition hover:bg-brand-deep focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand"
-              href="/how-it-works"
+              href={`/contact?service=${service.slug}`}
             >
               Talk to our team <ArrowRight aria-hidden="true" className="h-4 w-4" />
             </Link>

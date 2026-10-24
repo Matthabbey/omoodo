@@ -27,3 +27,24 @@ to create a production build.
 
 Use the existing feature structure, shared theme tokens, and agent guidance
 when adding new routes or UI.
+
+## Contact submissions
+
+Configure `CONTACT_BACKEND_URL` in the server environment with the backend
+endpoint that accepts contact-request JSON. The Next.js `POST /api/contact`
+route validates the form fields and forwards the request to that endpoint. The
+form reports a configuration error rather than claiming success when the
+backend URL is missing.
+
+The form follows the customer-facing sections in
+`app_scheme_images/Omoodo Service Request Form.pdf`. It supports multiple
+service selections in a guided stepper, task checklists, conditional
+service-specific detail steps, request overview, optional concierge-retainer
+steps, update preferences, authorisation, and the customer declaration.
+
+The forwarded JSON contains `name`, `email`, `phone`, `service` (primary
+selection or `general`), `services` (all selected categories),
+`serviceRequests` (selected tasks grouped by service), `location`, `message`,
+and `details` (the supplied answers keyed by field). Service values are
+`concierge`, `move`, `stay`, `home-care`, and `shop`; location values are
+`lagos`, `abuja`, `port-harcourt`, `other-nigeria`, and `international`.
