@@ -75,7 +75,7 @@ export const CULTURAL_WATERMARK_POSITIONS = {
   "rail-right-bottom": "bottom-2 right-2 hidden w-24 xl:block",
   "rail-left-fill": "left-0 top-0 hidden h-full w-[calc((100vw-80rem)/2+9rem)] min-w-36 max-w-[28rem] xl:block",
   "rail-right-fill": "right-0 top-0 hidden h-full w-[calc((100vw-80rem)/2+9rem)] min-w-36 max-w-[28rem] xl:block",
-  "content-fill": "inset-0 hidden h-full w-full md:block",
+  "content-fill": "inset-0 h-full w-full",
 } as const;
 
 export const CULTURAL_WATERMARK_COLOR_CLASSES: Record<CulturalWatermarkColor, string> = {
@@ -92,6 +92,7 @@ export const HOME_WATERMARK_ART: readonly CulturalWatermarkArt[] = [
 ];
 
 export const HOW_IT_WORKS_WATERMARK_ART: readonly CulturalWatermarkArt[] = [
+  { id: "triangle-textile", placement: "content-fill", color: "brand" },
   { id: "chevron-braid", placement: "top-left" },
   { id: "stepped-meander", placement: "bottom-right" },
 ];

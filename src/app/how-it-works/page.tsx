@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
-import { HOW_IT_WORKS_STEPS } from "../../constants/how-it-works";
 import { HOW_IT_WORKS_WATERMARK_ART } from "../../constants/cultural-watermarks";
 import { CulturalWatermarks } from "../../components/home/CulturalWatermarks";
+import { HowItWorksFlow } from "../../components/how-it-works/HowItWorksFlow";
 
 export const metadata: Metadata = { title: "How it works" };
 
@@ -12,32 +12,23 @@ export default function HowItWorksPage() {
     <main className="relative isolate min-h-screen overflow-hidden bg-background px-4 py-14 text-foreground sm:px-6 sm:py-20 lg:px-8">
       <CulturalWatermarks designs={HOW_IT_WORKS_WATERMARK_ART} />
       <div className="relative z-10 mx-auto max-w-7xl">
-        <p className="text-xs font-bold uppercase tracking-widest text-brand">
-          Simple, considered support
-        </p>
-        <h1 className="mt-4 max-w-3xl text-4xl font-bold leading-tight tracking-tight sm:text-5xl">
-          Local follow-through, made simple.
-        </h1>
-        <p className="mt-5 max-w-2xl text-lg leading-7 text-muted">
-          One clear process helps you get dependable support, wherever you are.
-        </p>
+        <div className="mx-auto max-w-3xl text-center">
+          <p className="text-xs font-bold uppercase tracking-widest text-brand">How we work</p>
+          <h1 className="mt-4 text-4xl font-bold leading-tight tracking-tight sm:text-5xl lg:text-6xl">
+            We make getting things handled simple and transparent.
+          </h1>
+          <p className="mx-auto mt-5 max-w-2xl text-lg leading-8 text-muted">
+            From the first conversation to final confirmation, you always know what is happening and what comes next.
+          </p>
+        </div>
 
-        <ol className="mt-12 grid gap-5 md:grid-cols-3">
-          {HOW_IT_WORKS_STEPS.map((step) => (
-            <li className="rounded-3xl border border-border bg-surface p-6" key={step.number}>
-              <span className="text-sm font-bold tracking-widest text-accent-deep">{step.number}</span>
-              <h2 className="mt-5 text-xl font-bold">{step.title}</h2>
-              <p className="mt-3 leading-7 text-muted">{step.description}</p>
-            </li>
-          ))}
-        </ol>
+        <HowItWorksFlow />
 
-        <Link
-          className="mt-9 inline-flex items-center justify-center gap-2 rounded-full bg-brand px-6 py-3 font-semibold leading-none text-on-brand transition hover:bg-brand-deep [&_svg]:shrink-0"
-          href="/concierge"
-        >
-          Explore concierge support <ArrowRight aria-hidden="true" className="h-4 w-4" />
-        </Link>
+        <div className="mt-12 flex justify-center sm:mt-16">
+          <Link className="inline-flex h-12 items-center justify-center gap-2 rounded-full bg-brand px-7 text-base font-semibold leading-none text-on-brand shadow-sm transition hover:bg-brand-deep hover:shadow-md focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand" href="/contact">
+            Tell us what you need <ArrowRight aria-hidden="true" className="h-4 w-4" />
+          </Link>
+        </div>
       </div>
     </main>
   );

@@ -28,7 +28,9 @@ export function CulturalWatermarks({
         const isFilledRail = design.placement.endsWith("-fill");
         const isContentFill = design.placement === "content-fill";
         const opacityClass = isContentFill
-          ? "opacity-30"
+          ? visibility === "prominent"
+            ? "opacity-30"
+            : "opacity-[0.08] sm:opacity-[0.12]"
           : visibility === "prominent"
             ? "opacity-[0.08]"
             : "opacity-[0.08] sm:opacity-[0.12]";
