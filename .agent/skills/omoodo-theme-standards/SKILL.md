@@ -109,14 +109,15 @@ Use these as starting patterns, adapting them to the feature's user and task:
   outlined treatments for supporting actions, and text buttons for low-emphasis
   actions. Button labels should describe the result.
 
-These are visual patterns only. Follow the feature's actual data model,
-permissions, navigation, loading, error, empty, success, and disabled behavior.
-
 ## Component and implementation rules
 
 - Before coding, inspect the reference images, the existing theme tokens, shared
-  UI components, nearby feature implementations, and any project-specific
-  design documentation.
+  UI components in `src/components/ui/`, nearby feature implementations, and any
+  project-specific design documentation.
+- Base UI primitives are centralized in `src/components/ui/` (`Button`, `Badge`,
+  `Input`, `Select`, `index.ts`). All updates or new UI components must import and
+  reuse these canonical components rather than creating ad-hoc buttons, raw
+  unstyled inputs, or native select elements.
 - Reuse existing components and supported variants. If a needed token or
   primitive is missing, extend the canonical theme/component system in its
   established location; do not create a parallel theme or local design system.

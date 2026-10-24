@@ -18,7 +18,10 @@ to create a production build.
 
 ## Project structure
 
-- `src/app/` contains the App Router entrypoints and global theme tokens.
+- `src/app/` contains the App Router entrypoints for the home page, service
+  pages, and shared global theme.
+- `src/components/services/` contains the shared service-page presentation.
+- `src/constants/` and `src/types/` contain shared service content and types.
 - `.agent/skills/` contains shared implementation and design standards.
 - `app_scheme_images/` contains the Omoodo visual references.
 

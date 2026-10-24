@@ -1,4 +1,6 @@
 import type { Metadata } from "next";
+import { SiteFooter } from "../components/layout/SiteFooter";
+import { SiteHeader } from "../components/layout/SiteHeader";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -6,13 +8,17 @@ export const metadata: Metadata = {
     default: "Omoodo",
     template: "%s | Omoodo",
   },
-  description: "A thoughtful foundation for the next Omoodo feature.",
+  description: "Thoughtful concierge and lifestyle services, coordinated locally.",
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html lang="en">
-      <body className="font-sans antialiased">{children}</body>
+      <body className="font-sans antialiased">
+        <SiteHeader />
+        {children}
+        <SiteFooter />
+      </body>
     </html>
   );
 }

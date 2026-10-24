@@ -61,6 +61,10 @@ before making changes, then use the relevant shared guidance under `.agent/`.
 - Every UI implementation must follow Omoodo's documented theme and UI
   structure. Reuse the established tokens, components, and feature patterns;
   do not invent a separate visual system or bypass the reference guidance.
+- Centralize all reusable base UI primitives in `src/components/ui/` (e.g.
+  `Button`, `Badge`, `Input`, `Select`, `index.ts`). All updates and new
+  components must consume these canonical base primitives rather than
+  introducing ad-hoc buttons, raw unstyled inputs, or native select elements.
 - Treat the established design system as the source of truth for colors,
   typography, spacing, radii, elevation, and component states.
 - Prefer semantic theme tokens and shared UI components over literal values,
@@ -68,8 +72,8 @@ before making changes, then use the relevant shared guidance under `.agent/`.
 - Do not introduce raw color values, arbitrary color utilities, or inline
   colors. Do not bypass the project's theme or dark-mode conventions.
 - If a needed token or component does not exist, follow the project's
-  established extension pattern and keep the addition reusable. Do not invent
-  parallel theme systems.
+  established extension pattern in `src/components/ui/` or `globals.css` and
+  keep the addition reusable. Do not invent parallel theme systems.
 - Keep visual behavior accessible and responsive; account for keyboard use,
   focus, labels, contrast, and relevant loading, empty, error, disabled, and
   success states.

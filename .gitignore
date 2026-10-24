@@ -41,3 +41,4 @@ yarn-error.log*
 next-env.d.ts
 app_scheme_images/*
 .vscode/*
+omoodo_requirements_docs

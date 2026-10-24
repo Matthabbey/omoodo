@@ -27,6 +27,15 @@ by that policy.
 - Keep repository-wide policy in the root `AGENTS.md`; avoid duplicating it in
   skills, workflows, or tool-specific agent files.
 
+## Component architecture
+
+- `src/components/ui/` contains canonical, theme-compliant base UI primitives
+  (`Button`, `Badge`, `Input`, `Select`, `index.ts`).
+- `src/lib/utils.ts` provides the shared `cn` class utility.
+- All new components, feature sections, and page updates must consume base
+  primitives from `src/components/ui/` rather than introducing ad-hoc button
+  variants or unstyled native form elements.
+
 ## How to maintain this guidance
 
 - Update the canonical document when a standard changes; update its links and

@@ -7,22 +7,26 @@ and the [`omoodo-theme-standards` skill](../skills/omoodo-theme-standards/SKILL.
 1. Read any existing theme or design-system documentation that applies to the
    changed area. Verify referenced paths exist.
 2. Search for shared UI components and nearby feature patterns before creating
-   or styling a new component.
+   or styling a new component. Canonical base UI primitives are centralized in
+   `src/components/ui/` (`Button`, `Badge`, `Input`, `Select`, `index.ts`).
 3. Follow the Omoodo theme and UI structure in
    [`app_scheme_images/`](../../app_scheme_images/) and the
    [`omoodo-theme-standards` skill](../skills/omoodo-theme-standards/SKILL.md).
-   Use the existing design tokens, semantic variants, and shared components;
+   Use the established design tokens, semantic variants, and shared components;
    do not introduce literal colors, arbitrary color values, or an independent
    visual system.
-4. Handle relevant loading, empty, error, success, disabled, and
+4. All new components, feature sections, interactive controls, and forms MUST
+   consume the base primitives from `src/components/ui/` rather than creating
+   ad-hoc buttons, raw unstyled inputs, or native select elements.
+5. Handle relevant loading, empty, error, success, disabled, and
    authorization states consistently with the surrounding product.
-5. Check keyboard interaction, accessible names and labels, focus behavior,
+6. Check keyboard interaction, accessible names and labels, focus behavior,
    contrast, responsive layout, and text wrapping.
-6. Keep each authored or modified UI source file, including UI tests, at 200
+7. Keep each authored or modified UI source file, including UI tests, at 200
    physical lines or fewer; blank lines count. Split components along meaningful
    responsibility boundaries.
-7. Run theme audit or theme check scripts only if they are defined by the
+8. Run theme audit or theme check scripts only if they are defined by the
    project. Run theme checks after changing theme tokens or theme
    configuration.
-8. Run the focused UI tests and the other verification required by the
+9. Run the focused UI tests and the other verification required by the
    repository.
