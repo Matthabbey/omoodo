@@ -12,31 +12,40 @@ verification.
 
 ## Visual source of truth
 
-Treat [`app_scheme_images/`](../../../app_scheme_images/) as the visual reference
-for new and changed product UI. Review the relevant images before implementation:
+The brand is defined by the Ọmọ Ọdọ logo: a round emblem (smiling agent with a
+headset over a maroon-and-gold map of Africa) and the maroon wordmark with the
+tagline "Your reliable buddy". The emblem is checked in at
+`public/images/brand/omoodo-mark.png`; the favicon, Apple touch icon, and
+Open Graph image live beside `src/app/layout.tsx` as file-based metadata.
 
-- `colours.png` defines the palette direction and tonal families.
-- `typography.png` defines the type scale and typographic character.
-- `icon.png` shows the available icon style and breadth.
-- `image_1.png`, `image_2.png`, and `image_3.png` show example marketing,
-  onboarding, and signed-in application layouts.
-
-The images are design references, not a mandate to copy their sample content,
-brand marks, or every screen literally. Build Omoodo features using their
-shared visual language and the existing product architecture.
+- The semantic color tokens in `src/app/globals.css` are the single source of
+  truth for the palette. Read them before styling anything.
+- The logo lockup (emblem + wordmark) is owned by
+  `src/components/layout/BrandMark`; brand strings live in
+  `src/constants/brand.ts`. Reuse them rather than re-typing the name.
+- `app_scheme_images/` is referenced by older guidance but is not present in
+  the repository. Do not block on it; the tokens and existing screens are the
+  reference.
 
 ## Omoodo visual language
 
 ### Color
 
-- Use the palette shown in `colours.png`: a vivid cyan/blue as the primary
-  brand/action family, a fresh green accent, deep teal for strong contrast,
-  pale cyan/blue for soft surfaces, and a restrained black/gray neutral scale
-  for text, borders, and secondary content.
+- Use the logo palette: deep maroon (`brand`, `brand-deep`) as the primary
+  brand/action family, a lighter maroon-rose (`brand-accent`) for hover
+  borders and icons, warm gold (`accent`) as the accent, very dark maroon
+  (`deep`) for strong contrast panels and photo overlays, pale maroon and gold
+  tints (`brand-soft`, `accent-soft`) for soft surfaces, and a warm, slightly
+  maroon-tinted neutral scale (`foreground`, `muted`, `border`, `background`).
 - Assign colors by semantic role, not by arbitrary preference: primary actions
-  and links use the primary family; positive highlights and selected accents
-  may use green; deep teal supports high-emphasis panels; pale tints separate
-  surfaces without competing with content.
+  and links use `brand`; highlights and selected accents use gold; `deep`
+  supports high-emphasis panels; pale tints separate surfaces without
+  competing with content.
+- Gold is light: use `text-accent` only on `deep`/maroon panels or as
+  non-text decoration. On light surfaces use `text-accent-deep`, and put
+  `text-on-accent` (not `text-on-brand`) on a `bg-accent` fill.
+- `culture-green`, `culture-gold`, and `culture-red` are a separate
+  Pan-African family for the cultural watermark art, not general accents.
 - Establish or reuse semantic theme tokens for those roles. Use the project's
   token mechanism rather than hard-coded hex/RGB/HSL values, arbitrary color
   utilities, raw palette classes, inline colors, or isolated `dark:` overrides.
@@ -47,13 +56,12 @@ shared visual language and the existing product architecture.
 
 ### Typography
 
-- Follow the scale and weights shown in `typography.png`: clear, confident
-  display headings; readable medium-weight section titles; and calm, legible
-  body and supporting text.
-- The reference identifies Outfit. Reuse Outfit if it is already loaded by the
-  app; do not add or download a font solely on assumption. If the app uses a
-  different established font, retain it unless the task explicitly includes a
-  typography migration.
+- Use clear, confident display headings; readable medium-weight section
+  titles; and calm, legible body and supporting text.
+- The app uses the system `Segoe UI` stack defined by `--font-body`. Do not add
+  or download a font solely on assumption; retain the established font unless
+  the task explicitly includes a typography migration. The wordmark uses the
+  dotted Yoruba letters in "Ọmọ Ọdọ"; keep source files UTF-8.
 - Keep heading hierarchy, line-height, and text measure consistent. Use
   sentence case for product UI, concise labels, and readable line lengths.
   Avoid using oversized display type for dense dashboard content.
@@ -65,7 +73,7 @@ shared visual language and the existing product architecture.
 - Use softly rounded cards, image frames, search/filter controls, and pill
   buttons/tags, following the references. Reuse shared radius and spacing
   tokens; do not invent a new radius for each component.
-- Keep app content on clean white or pale neutral/cyan surfaces. Use borders,
+- Keep app content on clean white or pale warm-neutral surfaces. Use borders,
   subtle tonal separation, and restrained elevation to define hierarchy;
   avoid heavy shadows and nested card-on-card layers.
 - Keep content alignment and column gaps consistent. On smaller screens,
@@ -74,15 +82,18 @@ shared visual language and the existing product architecture.
 
 ### Icons and imagery
 
-- Follow `icon.png` and existing app icons: use a consistent, simple line-icon
-  family with aligned stroke weight and optical size.
+- Follow the existing app icons: use a consistent, simple line-icon family
+  (lucide-react) with aligned stroke weight and optical size.
 - Prefer the project's existing icon package and shared icon wrappers. Do not
   mix emoji, unrelated icon packs, and custom glyphs as UI icons.
 - Use imagery intentionally and consistently. Preserve a useful aspect ratio
   and focal point; use existing image assets where appropriate and do not
   distort people or product imagery.
-- Keep Omoodo identity in new UI. Do not carry over the reference images'
-  example brand name, logo, or placeholder copy.
+- Hero and marketing photography must be real, licensed photographs (owned,
+  or under the Pexels/Unsplash licence), never AI renders. Record the source
+  and licence in a comment next to the image constant.
+- Keep Omoodo identity in new UI: use `BrandMark` for the logo lockup and do
+  not redraw or recolor the emblem.
 
 ## Reusable feature patterns
 
@@ -90,8 +101,21 @@ Use these as starting patterns, adapting them to the feature's user and task:
 
 - **Marketing or discovery landing:** use a concise headline and supporting
   copy, one clear primary action, and a relevant image or illustration.
-  Arrange text and imagery side by side on wide screens and stack them on
-  narrow screens.
+  The home hero is a full-viewport, untinted photograph (`HeroBackdrop`,
+  no colour overlay) with the copy in a clear zone: on large screens a
+  frosted `surface` panel (translucent, blurred, bordered) holds the copy
+  in the usual light-surface tones (wine eyebrow, `foreground` headline
+  with the key word in wine over a gold underline, `brand` primary CTA and
+  gold `accent` secondary CTA), with the `surface` proof card on the photo
+  to the right and bordered `surface` chips for secondary navigation along
+  the bottom edge. On small screens the photo is a cropped band above the
+  copy, and the proof card and chips are hidden so the hero fits one
+  viewport. Inner-page heroes (for example `/how-it-works`) use a split
+  hero instead; when no licensed photograph exists, the right column is
+  an illustrated, token-based visual built from existing patterns (`surface`
+  cards, an `accent` progress line, CSS keyframes disabled under
+  `prefers-reduced-motion`), never an AI render. Elsewhere, arrange text and
+  imagery side by side on wide screens and stack them on narrow screens.
 - **Search and browse:** present the search/filter controls as one coherent
   group, keep the main submit action visually prominent, and show results in
   consistent cards with scannable metadata and clear click targets.
@@ -102,16 +126,37 @@ Use these as starting patterns, adapting them to the feature's user and task:
   logical grouping, visible selected states, concise validation, and one
   prominent forward action. Keep progress and recovery paths visible when
   relevant.
+- **Card rail:** the home "Why Ọmọ Ọdọ exists" section uses
+  `HomeAudienceCarousel`: a horizontally scrolling, scroll-snap rail of tall
+  `rounded-[2rem]` cards that alternate `deep` and `surface` tones. Each card
+  has a dot eyebrow, title, description, a short example list, a large icon
+  tile bottom-left and a round chevron link bottom-right; prev/next `Button`
+  icon controls sit under the rail and disable at the ends. Reuse this pattern
+  for any "lineup" of peers (audiences, products, services) rather than a
+  static grid.
+- **Stacked photo cards:** the home services section (`HomeServicesStory`
+  with `HomeServiceStackCard`) renders each service as a full-bleed photo
+  card: `sticky` list items whose top offset grows one rem per card
+  (`HOME_SERVICE_STACK_OFFSETS`) so earlier cards peek above later ones, a
+  `deep` gradient overlay for legibility, a `blur` `Badge` eyebrow top-left,
+  the white headline and one-paragraph write-up bottom-left, and a frosted
+  `surface` panel bottom-right with highlights and an `accent` icon link. Never
+  wrap sticky cards in `ScrollReveal`; its transforms break sticky positioning.
 - **Cards and tags:** make the information hierarchy obvious, keep repeated
   cards aligned, and use tags for compact secondary metadata—not as substitutes
   for headings or status text.
-- **Actions:** use filled primary buttons for the main action, secondary or
-  outlined treatments for supporting actions, and text buttons for low-emphasis
-  actions. Button labels should describe the result.
+- **Actions:** every call to action pairs wine and yellow. The `primary`
+  variant is yellow (`accent`) with wine (`brand`) text that flips to wine on
+  hover; `brand` is solid wine with white text (the home hero's primary
+  action, paired with an `accent` secondary); `accent` is yellow
+  with wine text; `outline` is a wine outline that fills wine on hover;
+  `secondary` is a translucent yellow pill for dark imagery. Use the `Button`
+  primitive, or `buttonVariants` from `src/components/ui` on a `Link`, instead
+  of hand-written pill classes. Button labels should describe the result.
 
 ## Component and implementation rules
 
-- Before coding, inspect the reference images, the existing theme tokens, shared
+- Before coding, inspect the existing theme tokens, shared
   UI components in `src/components/ui/`, nearby feature implementations, and any
   project-specific design documentation.
 - Base UI primitives are centralized in `src/components/ui/` (`Button`, `Badge`,

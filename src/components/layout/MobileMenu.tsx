@@ -5,8 +5,11 @@ import { createPortal } from "react-dom";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { ArrowRight, Menu, X } from "lucide-react";
+import { PRIMARY_NAV_LINKS } from "../../constants/navigation";
 import { SERVICE_PAGES } from "../../constants/services";
-import { Button } from "../ui";
+import { cn } from "../../lib/utils";
+import { Button, buttonVariants } from "../ui";
+import { BrandMark } from "./BrandMark";
 
 export function MobileMenu() {
   const pathname = usePathname();
@@ -74,9 +77,7 @@ export function MobileMenu() {
             role="dialog"
           >
             <div className="flex items-center justify-between border-b border-border px-5 py-4">
-              <span className="text-xl font-black tracking-tight text-brand">
-                Omoodo<span className="text-accent">.</span>
-              </span>
+              <BrandMark size="sm" />
               <Button
                 aria-label="Close navigation menu"
                 onClick={closeMenu}
@@ -90,9 +91,11 @@ export function MobileMenu() {
             </div>
 
             <nav aria-label="Mobile navigation" className="flex-1 overflow-y-auto p-4">
-              <Link className={linkClass(pathname === "/")} href="/" onClick={closeMenu}>Home</Link>
-              <Link className={linkClass(pathname === "/how-it-works")} href="/how-it-works" onClick={closeMenu}>How it works</Link>
-              <Link className={linkClass(pathname === "/contact")} href="/contact" onClick={closeMenu}>Contact</Link>
+              {PRIMARY_NAV_LINKS.map((link) => (
+                <Link className={linkClass(pathname === link.href)} href={link.href} key={link.href} onClick={closeMenu}>
+                  {link.label}
+                </Link>
+              ))}
               <p className="px-3 pb-2 pt-5 text-xs font-bold uppercase tracking-wider text-muted">Our services</p>
               {SERVICE_PAGES.map((service) => (
                 <Link
@@ -108,7 +111,7 @@ export function MobileMenu() {
             </nav>
 
             <div className="border-t border-border p-4">
-              <Link className="flex items-center justify-center gap-2 rounded-full bg-brand px-5 py-3 text-sm font-bold text-on-brand" href="/contact" onClick={closeMenu}>
+              <Link className={cn(buttonVariants({ variant: "primary", size: "lg" }), "w-full font-bold")} href="/contact" onClick={closeMenu}>
                 Request support <ArrowRight aria-hidden="true" className="h-4 w-4" />
               </Link>
             </div>

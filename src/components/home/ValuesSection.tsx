@@ -16,7 +16,7 @@ export function ValuesSection() {
           <div className="max-w-3xl">
             <span className="inline-flex items-center gap-3 text-xs font-bold uppercase tracking-[0.18em] text-brand">
               <span aria-hidden="true" className="h-px w-8 bg-accent" />
-              The Omoodo difference
+              The Ọmọ Ọdọ difference
             </span>
             <h2
               className="mt-5 text-4xl font-bold leading-tight tracking-tight text-foreground sm:text-5xl"
@@ -58,7 +58,7 @@ export function ValuesSection() {
                   <circle cx="12" cy="12" r="9" stroke="currentColor" strokeWidth="1.6" />
                 </svg>
               </span>
-              <span className="text-xs font-bold tracking-widest text-accent/70">02</span>
+              <span className="text-xs font-bold tracking-widest text-accent-deep/70">02</span>
             </div>
             <h3 className="mt-7 text-lg font-bold text-foreground">We own the outcome</h3>
             <p className="mt-2 text-sm leading-6 text-muted">
@@ -90,7 +90,7 @@ export function ValuesSection() {
                   <path d="M16 20v-1.5a4 4 0 0 0-4-4H7a4 4 0 0 0-4 4V20m6.5-9a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7Zm7-6.5a3.5 3.5 0 0 1 0 6.8m2 3.2a4 4 0 0 1 3 3.9V20" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.7" />
                 </svg>
               </span>
-              <span className="text-xs font-bold tracking-widest text-accent/70">04</span>
+              <span className="text-xs font-bold tracking-widest text-accent-deep/70">04</span>
             </div>
             <h3 className="mt-7 text-lg font-bold text-foreground">Made for your world</h3>
             <p className="mt-2 text-sm leading-6 text-muted">
@@ -104,7 +104,7 @@ export function ValuesSection() {
           <p className="font-semibold text-foreground">
             Rooted in local knowledge. Ready wherever life takes you.
           </p>
-          <p className="text-sm text-muted">Omoodo Concierge & Lifestyle Services</p>
+          <p className="text-sm text-muted">Ọmọ Ọdọ Concierge & Lifestyle Services</p>
         </div>
       </ScrollReveal>
     </section>

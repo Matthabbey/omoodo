@@ -88,7 +88,7 @@ export function ContactStepPanel({
           {CONTACT_UPDATES_FIELDS.map((field) => <ContactFormField field={field} key={field.key} />)}
           <label className="flex items-start gap-2 text-sm text-muted sm:col-span-2">
             <input className="mt-1 accent-brand" name="thirdPartyCosts" required={active} type="checkbox" value="accepted" />
-            Third-party costs (such as hotels, vendors, drivers or government fees) are separate from Omoodo’s service fee.
+            Third-party costs (such as hotels, vendors, drivers or government fees) are separate from Ọmọ Ọdọ’s service fee.
           </label>
         </div>
       )}
@@ -98,7 +98,7 @@ export function ContactStepPanel({
           <DateTimePicker id="declaration-date" label="Declaration date" name="declarationDate" required={active} type="date" />
           <label className="flex items-start gap-2 text-sm text-muted sm:col-span-2">
             <input className="mt-1 accent-brand" name="declaration" required={active} type="checkbox" value="authorised" />
-            I confirm these details are accurate and authorise Omoodo to arrange the request once I approve the quotation.
+            I confirm these details are accurate and authorise Ọmọ Ọdọ to arrange the request once I approve the quotation.
           </label>
         </div>
       )}

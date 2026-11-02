@@ -1,9 +1,10 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { SCROLL_REVEAL_DELAY_CLASS } from "../../constants/scroll-reveal";
 import type { ScrollRevealProps } from "../../types/home";
 
-export function ScrollReveal({ children, className = "", effect = "rise" }: ScrollRevealProps) {
+export function ScrollReveal({ children, className = "", effect = "rise", delay = 0 }: ScrollRevealProps) {
   const [position, setPosition] = useState<"above" | "visible" | "below">("below");
   const sectionRef = useRef<HTMLDivElement>(null);
 
@@ -27,7 +28,7 @@ export function ScrollReveal({ children, className = "", effect = "rise" }: Scro
 
   return (
     <div
-      className={`${className} transition-all duration-700 ease-out ${
+      className={`${className} transition-all duration-700 ease-out ${SCROLL_REVEAL_DELAY_CLASS[delay]} ${
         position === "visible"
           ? "translate-x-0 translate-y-0 rotate-0 skew-y-0 scale-100 opacity-100"
           : hiddenTransform(effect, position)

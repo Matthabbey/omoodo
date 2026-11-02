@@ -6,8 +6,8 @@ import { ContactForm } from "../../components/contact/ContactForm";
 import { CulturalWatermarks } from "../../components/home/CulturalWatermarks";
 
 export const metadata: Metadata = {
-  title: "Contact Omoodo",
-  description: "Tell Omoodo what support you need and where. Our team will follow up.",
+  title: "Contact Ọmọ Ọdọ",
+  description: "Tell Ọmọ Ọdọ what support you need and where. Our team will follow up.",
 };
 
 export default function ContactPage() {
@@ -19,7 +19,7 @@ export default function ContactPage() {
       <CulturalWatermarks designs={HOME_WATERMARK_ART} />
       <div className="relative z-10 mx-auto grid h-full min-h-0 min-w-0 max-w-7xl grid-cols-[minmax(0,1fr)] grid-rows-[auto_minmax(0,1fr)] gap-6 lg:grid-rows-1 lg:grid-cols-[minmax(0,0.8fr)_minmax(0,1.2fr)] lg:gap-16">
         <section className="min-h-0 min-w-0">
-          <p className="text-xs font-bold uppercase tracking-widest text-brand">Contact Omoodo</p>
+          <p className="text-xs font-bold uppercase tracking-widest text-brand">Contact Ọmọ Ọdọ</p>
           <h1 className="mt-3 text-3xl font-bold leading-tight tracking-tight sm:mt-4 sm:text-5xl">
             Let’s take care of the details.
           </h1>

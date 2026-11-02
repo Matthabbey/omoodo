@@ -1,6 +1,8 @@
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight, Check } from "lucide-react";
+import { cn } from "../../lib/utils";
+import { buttonVariants } from "../ui";
 import type { ServicePageData } from "../../types/service";
 import { SERVICE_WATERMARK_ART } from "../../constants/cultural-watermarks";
 import { CulturalWatermarks } from "../home/CulturalWatermarks";
@@ -17,7 +19,7 @@ export function ServicePageContent({ service }: ServicePageContentProps) {
         <div className="relative z-10 mx-auto grid max-w-7xl gap-10 px-4 py-12 sm:px-6 sm:py-16 lg:grid-cols-2 lg:items-center lg:px-8 lg:py-24">
           <div>
             <Link className="text-sm font-semibold text-brand hover:text-brand-deep" href="/">
-              Omoodo <span aria-hidden="true">/</span> Services
+              Ọmọ Ọdọ <span aria-hidden="true">/</span> Services
             </Link>
             <p className="mt-8 text-xs font-bold uppercase tracking-widest text-brand">
               {service.eyebrow}
@@ -39,7 +41,7 @@ export function ServicePageContent({ service }: ServicePageContentProps) {
               ))}
             </ul>
             <Link
-              className="mt-8 inline-flex items-center justify-center gap-2 rounded-full bg-brand px-6 py-3 font-semibold leading-none text-on-brand transition hover:bg-brand-deep focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand [&_svg]:shrink-0"
+              className={cn(buttonVariants({ variant: "primary", size: "lg" }), "mt-8")}
               href={`/contact?service=${service.slug}`}
             >
               Talk to our team <ArrowRight aria-hidden="true" className="h-4 w-4" />
@@ -62,7 +64,7 @@ export function ServicePageContent({ service }: ServicePageContentProps) {
       <section className="border-t border-border bg-surface py-14 sm:py-20">
         <div className="mx-auto max-w-4xl px-4 text-center sm:px-6 lg:px-8">
           <p className="text-xs font-bold uppercase tracking-widest text-brand">
-            The Omoodo difference
+            The Ọmọ Ọdọ difference
           </p>
           <h2 className="mt-4 text-3xl font-bold tracking-tight sm:text-4xl">
             {service.detailHeading}
@@ -74,7 +76,7 @@ export function ServicePageContent({ service }: ServicePageContentProps) {
             className="mt-7 inline-flex items-center gap-2 font-semibold leading-none text-brand hover:text-brand-deep [&_svg]:shrink-0"
             href="/how-it-works"
           >
-            How Omoodo works <ArrowRight aria-hidden="true" className="h-4 w-4" />
+            How Ọmọ Ọdọ works <ArrowRight aria-hidden="true" className="h-4 w-4" />
           </Link>
         </div>
       </section>

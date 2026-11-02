@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { ArrowLeft, ArrowRight, Home } from "lucide-react";
+import { buttonVariants } from "../components/ui";
 
 export default function NotFound() {
   return (
@@ -10,7 +11,7 @@ export default function NotFound() {
       </div>
       <section className="relative z-10 mx-auto w-full max-w-2xl text-center">
         <p className="text-sm font-bold uppercase tracking-[0.2em] text-brand">
-          Omoodo Concierge & Lifestyle Services
+          Ọmọ Ọdọ Concierge & Lifestyle Services
         </p>
         <p aria-hidden="true" className="mt-6 text-8xl font-black leading-none tracking-tight text-brand sm:text-9xl">
           404
@@ -23,14 +24,14 @@ export default function NotFound() {
         </p>
         <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
           <Link
-            className="inline-flex h-11 items-center justify-center gap-2 rounded-full bg-brand px-5 text-sm font-semibold leading-none text-on-brand transition hover:bg-brand-deep [&_svg]:shrink-0"
+            className={buttonVariants({ variant: "primary", size: "lg" })}
             href="/"
           >
             <Home aria-hidden="true" className="h-4 w-4" />
             Go to homepage
           </Link>
           <Link
-            className="inline-flex h-11 items-center justify-center gap-2 rounded-full border border-border bg-surface px-5 text-sm font-semibold leading-none text-foreground transition hover:border-brand-accent hover:bg-brand-soft hover:text-brand-deep [&_svg]:shrink-0"
+            className={buttonVariants({ variant: "outline", size: "lg" })}
             href="/contact"
           >
             Contact support <ArrowRight aria-hidden="true" className="h-4 w-4" />
@@ -38,7 +39,7 @@ export default function NotFound() {
         </div>
         <Link className="mt-7 inline-flex items-center gap-2 text-sm font-semibold text-muted transition hover:text-brand" href="/">
           <ArrowLeft aria-hidden="true" className="h-4 w-4" />
-          Back to Omoodo
+          Back to Ọmọ Ọdọ
         </Link>
       </section>
     </main>

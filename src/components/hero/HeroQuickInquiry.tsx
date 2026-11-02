@@ -21,7 +21,7 @@ export function HeroQuickInquiry() {
 
   return (
     <form
-      aria-label="Omoodo Quick Service Finder"
+      aria-label="Ọmọ Ọdọ Quick Service Finder"
       className="flex flex-col gap-4 rounded-2xl border border-border bg-surface p-4 shadow-md [&_label]:text-sm md:flex-row md:items-center md:gap-5 md:p-5 md:[&_button]:h-14 md:[&_button]:text-base"
       onSubmit={handleSubmit}
     >

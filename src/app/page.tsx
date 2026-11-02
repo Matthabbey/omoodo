@@ -1,4 +1,4 @@
-import { HeroSlider } from "../components/hero/HeroSlider";
+import { HomeHero } from "../components/hero/HomeHero";
 import { HeroQuickInquiry } from "../components/hero/HeroQuickInquiry";
 import { ValuesSection } from "../components/home/ValuesSection";
 import { HomeFinalCta } from "../components/home/HomeFinalCta";
@@ -9,9 +9,9 @@ import { HomeServicesStory } from "../components/home/HomeServicesStory";
 export default function Home() {
   return (
     <main className="min-h-screen bg-background text-foreground">
-      <section className="flex min-h-[calc(100svh-8rem)] flex-col md:min-h-[calc(100svh-6rem)]">
-        <HeroSlider />
-        <div className="relative z-30 mx-auto -mt-6 w-full max-w-7xl px-4 p-6 sm:-mt-8 sm:px-6 lg:px-8">
+      <HomeHero />
+      <section aria-label="Quick service finder" className="border-y border-border bg-surface">
+        <div className="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
           <HeroQuickInquiry />
         </div>
       </section>

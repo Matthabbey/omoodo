@@ -4,9 +4,14 @@ import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { ArrowRight, ChevronDown } from "lucide-react";
+import { NAV_LEADING_LINKS, NAV_TRAILING_LINKS } from "../../constants/navigation";
 import { SERVICE_PAGES } from "../../constants/services";
 import { SERVICE_MENU_WATERMARK_ART } from "../../constants/cultural-watermarks";
+import { cn } from "../../lib/utils";
 import { CulturalWatermarks } from "../home/CulturalWatermarks";
+import { buttonVariants } from "../ui";
+import { BRAND_HOME_LABEL } from "../../constants/brand";
+import { BrandMark } from "./BrandMark";
 import { MobileMenu } from "./MobileMenu";
 
 export function SiteHeader() {
@@ -55,54 +60,48 @@ export function SiteHeader() {
       <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-3 sm:px-6 lg:px-8">
         <Link
           aria-current={pathname === "/" ? "page" : undefined}
-          aria-label="Omoodo home"
-          className="shrink-0 text-2xl font-black tracking-tight text-brand"
+          aria-label={BRAND_HOME_LABEL}
+          className="shrink-0 rounded-full focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand"
           href="/"
         >
-          Omoodo<span className="text-accent">.</span>
+          <BrandMark priority size="md" />
         </Link>
 
         <nav aria-label="Main navigation" className="hidden items-center gap-2 md:flex">
+          {NAV_LEADING_LINKS.map((link) => (
+            <Link
+              aria-current={pathname === link.href ? "page" : undefined}
+              className={navLinkClass(pathname === link.href)}
+              href={link.href}
+              key={link.href}
+            >
+              {link.label}
+            </Link>
+          ))}
           <button
             aria-controls="services-mega-menu"
             aria-expanded={servicesOpen}
-            className={`inline-flex items-center justify-center gap-2 rounded-xl px-4 py-2.5 text-sm font-semibold leading-none transition ${
-              servicesOpen || isServicePage
-                ? "bg-brand-soft text-brand"
-                : "text-foreground hover:bg-brand-soft hover:text-brand"
-            }`}
+            className={`${navLinkClass(servicesOpen || isServicePage)} inline-flex items-center justify-center gap-2 leading-none`}
             onClick={() => setServicesOpen((open) => !open)}
             type="button"
           >
             Our services
             <ChevronDown aria-hidden="true" className={`h-4 w-4 shrink-0 transition-transform ${servicesOpen ? "rotate-180" : ""}`} />
           </button>
-          <Link
-            aria-current={pathname === "/how-it-works" ? "page" : undefined}
-            className={`rounded-xl px-4 py-2.5 text-sm font-semibold transition ${
-              pathname === "/how-it-works"
-                ? "bg-brand-soft text-brand"
-                : "text-foreground hover:bg-brand-soft hover:text-brand"
-            }`}
-            href="/how-it-works"
-          >
-            How it works
-          </Link>
-          <Link
-            aria-current={pathname === "/contact" ? "page" : undefined}
-            className={`rounded-xl px-4 py-2.5 text-sm font-semibold transition ${
-              pathname === "/contact"
-                ? "bg-brand-soft text-brand"
-                : "text-foreground hover:bg-brand-soft hover:text-brand"
-            }`}
-            href="/contact"
-          >
-            Contact
-          </Link>
+          {NAV_TRAILING_LINKS.map((link) => (
+            <Link
+              aria-current={pathname === link.href ? "page" : undefined}
+              className={navLinkClass(pathname === link.href)}
+              href={link.href}
+              key={link.href}
+            >
+              {link.label}
+            </Link>
+          ))}
         </nav>
 
         <Link
-          className="hidden shrink-0 items-center justify-center rounded-full bg-brand px-5 py-2.5 text-sm font-semibold leading-none text-on-brand transition hover:bg-brand-deep focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand md:inline-flex"
+          className={cn(buttonVariants({ variant: "primary" }), "hidden shrink-0 md:inline-flex")}
           href="/contact"
         >
           Request support
@@ -121,7 +120,7 @@ export function SiteHeader() {
             <div>
               <div className="mb-3 flex items-center gap-2 border-b border-border pb-3">
                 <span aria-hidden="true" className="h-2 w-2 rounded-full bg-accent" />
-                <p className="text-xs font-bold uppercase tracking-wider text-foreground">Explore Omoodo services</p>
+                <p className="text-xs font-bold uppercase tracking-wider text-foreground">Explore Ọmọ Ọdọ services</p>
               </div>
               <div className="grid gap-1 sm:grid-cols-2">
                 {SERVICE_PAGES.map((service) => (
@@ -157,7 +156,7 @@ export function SiteHeader() {
                 See how we coordinate trusted help around your needs, at home or across the city.
               </p>
               <Link
-                className="relative mt-5 inline-flex items-center justify-center gap-2 rounded-full bg-surface px-4 py-2.5 text-sm font-bold leading-none text-brand transition hover:bg-brand-soft [&_svg]:shrink-0"
+                className={cn(buttonVariants({ variant: "accent" }), "relative mt-5 font-bold")}
                 href="/how-it-works"
               >
                 How it works
@@ -170,4 +169,10 @@ export function SiteHeader() {
       )}
     </header>
   );
+}
+
+function navLinkClass(isActive: boolean) {
+  return `rounded-xl px-4 py-2.5 text-sm font-semibold transition ${
+    isActive ? "bg-brand-soft text-brand" : "text-foreground hover:bg-brand-soft hover:text-brand"
+  }`;
 }

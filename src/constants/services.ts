@@ -10,7 +10,7 @@ export const SERVICE_PAGES: readonly ServicePageData[] = [
     description:
       "From property checks to family support, we take thoughtful ownership of the important things happening on the ground.",
     imageSrc: "/images/hero/hero-concierge.jpg",
-    imageAlt: "Omoodo concierge inspecting a modern residence",
+    imageAlt: "Ọmọ Ọdọ concierge inspecting a modern residence",
     highlights: ["Property visits and updates", "Family and business support", "Clear communication"],
     detailHeading: "Peace of mind, handled personally.",
     detailDescription:
@@ -83,11 +83,11 @@ export const SERVICE_PATHS: Record<HeroPillarId, string> = {
 } as const;
 
 export const SERVICE_OPTIONS = [
-  { value: "concierge", label: "Omoodo Concierge · Property & Representation" },
-  { value: "move", label: "Omoodo Move · Mobility & Airport Transfers" },
-  { value: "stay", label: "Omoodo Stay · Serviced Apartments & Stays" },
-  { value: "home", label: "Omoodo Home · Laundry & Lifestyle Support" },
-  { value: "shop", label: "Omoodo Shop · Sourcing & Procurement" },
+  { value: "concierge", label: "Ọmọ Ọdọ Concierge · Property & Representation" },
+  { value: "move", label: "Ọmọ Ọdọ Move · Mobility & Airport Transfers" },
+  { value: "stay", label: "Ọmọ Ọdọ Stay · Serviced Apartments & Stays" },
+  { value: "home", label: "Ọmọ Ọdọ Home · Laundry & Lifestyle Support" },
+  { value: "shop", label: "Ọmọ Ọdọ Shop · Sourcing & Procurement" },
 ] as const satisfies readonly { value: HeroPillarId; label: string }[];
 
 export function getServicePage(slug: ServicePageData["slug"]) {

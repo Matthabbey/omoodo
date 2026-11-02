@@ -32,7 +32,7 @@ export function HomeKnowledgeSections() {
                 <p className="flex items-center gap-3 rounded-2xl border border-white/15 bg-white/5 p-4 text-sm font-semibold"><Camera aria-hidden="true" className="h-5 w-5 text-accent" /> Photos, receipts and relevant evidence</p>
                 <p className="flex items-center gap-3 rounded-2xl border border-white/15 bg-white/5 p-4 text-sm font-semibold"><ShieldCheck aria-hidden="true" className="h-5 w-5 text-brand-accent" /> Clear ownership through completion</p>
               </div>
-              <Link className="mt-7 inline-flex items-center gap-2 font-bold text-brand-soft" href="/how-it-works">See the complete process <ArrowRight className="h-4 w-4" /></Link>
+              <Link className="mt-7 inline-flex items-center gap-2 font-bold text-accent transition hover:text-accent-soft" href="/how-it-works">See the complete process <ArrowRight className="h-4 w-4" /></Link>
             </div>
             <ol className="grid gap-3 sm:grid-cols-2">
               {HOW_IT_WORKS_STEPS.map((step) => (
@@ -53,7 +53,7 @@ export function HomeKnowledgeSections() {
           <div className="max-w-3xl">
             <Badge variant="soft">Pricing clarity</Badge>
             <h2 className="mt-5 text-4xl font-bold tracking-tight sm:text-5xl">You should understand what you are paying for.</h2>
-            <p className="mt-5 text-lg leading-8 text-muted">Pricing reflects the nature, complexity and duration of each assignment. Third-party costs are clearly separated from Omoodo fees.</p>
+            <p className="mt-5 text-lg leading-8 text-muted">Pricing reflects the nature, complexity and duration of each assignment. Third-party costs are clearly separated from Ọmọ Ọdọ fees.</p>
           </div>
           <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
             {HOME_PRICING_OPTIONS.map((option, index) => (
@@ -84,7 +84,7 @@ export function HomeKnowledgeSections() {
                 .
               </h2>
               <p className="mt-4 text-base leading-7 text-muted">
-                These are the standards every Omoodo assignment is designed to provide—not anonymous claims or invented reviews.
+                These are the standards every Ọmọ Ọdọ assignment is designed to provide—not anonymous claims or invented reviews.
               </p>
 
               <div className="mt-8 grid gap-3.5 sm:grid-cols-2">
