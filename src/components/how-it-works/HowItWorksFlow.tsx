@@ -46,7 +46,7 @@ export function HowItWorksFlow() {
       <div aria-hidden="true" className="absolute bottom-8 left-5 top-8 w-px bg-border md:left-1/2" />
       <ol className="space-y-6 sm:space-y-8">
         {HOW_IT_WORKS_STEPS.map((step, index) => {
-          const position = stepPositions[index] ?? "below";
+          const position = stepPositions[index] ?? "visible";
           const isVisible = position === "visible";
           const cardArt = HOW_IT_WORKS_CARD_ART[index];
           const cardStyle = HOW_IT_WORKS_CARD_STYLES[index];

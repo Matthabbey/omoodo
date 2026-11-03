@@ -5,7 +5,9 @@ import { SCROLL_REVEAL_DELAY_CLASS } from "../../constants/scroll-reveal";
 import type { ScrollRevealProps } from "../../types/home";
 
 export function ScrollReveal({ children, className = "", effect = "rise", delay = 0 }: ScrollRevealProps) {
-  const [position, setPosition] = useState<"above" | "visible" | "below">("below");
+  // Starts visible so content renders before hydration; the observer hides off-screen
+  // sections right after mount and reveals them as they scroll in.
+  const [position, setPosition] = useState<"above" | "visible" | "below">("visible");
   const sectionRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {

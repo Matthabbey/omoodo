@@ -3,6 +3,7 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { HOME_AUDIENCES } from "../../constants/home";
+import { AUDIENCES_SECTION_ID, HOME_AUDIENCES_REGION_LABEL } from "../../constants/home-copy";
 import { Button } from "../ui";
 import { HomeAudienceSlide } from "./HomeAudienceSlide";
 
@@ -36,7 +37,7 @@ export function HomeAudienceCarousel() {
   }
 
   return (
-    <div aria-label="Who Ọmọ Ọdọ supports" aria-roledescription="carousel" role="region">
+    <div aria-label={HOME_AUDIENCES_REGION_LABEL} aria-roledescription="carousel" className="scroll-mt-24" id={AUDIENCES_SECTION_ID} role="region">
       <ul
         className="-mx-4 flex snap-x snap-mandatory gap-5 overflow-x-auto px-4 pb-4 pt-2 scroll-smooth motion-reduce:scroll-auto sm:-mx-6 sm:px-6 lg:-mx-8 lg:px-8"
         onScroll={updateBounds}

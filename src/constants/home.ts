@@ -1,5 +1,5 @@
 import type { HeroCta } from "../types/hero-home";
-import type { HomeAudience, ServicePromise } from "../types/home";
+import type { HomeAudience, HomePurpose } from "../types/home";
 import type { ServiceSlug } from "../types/service";
 import { getContactHref } from "./contact";
 
@@ -8,14 +8,14 @@ export const HOME_INTRO_HEADLINE_EMPHASIS = "trusted partner";
 export const HOME_INTRO_HEADLINE_TAIL = "for the things you cannot always handle yourself.";
 
 export const HOME_INTRO_PRIMARY_CTA: HeroCta = { label: "Tell us what you need", href: "/contact" };
-export const HOME_INTRO_SECONDARY_CTA: HeroCta = { label: "See how it works", href: "/how-it-works" };
+export const HOME_INTRO_SECONDARY_CTA: HeroCta = { label: "Who we help", href: "#audiences" };
 
 export const HOME_SERVICES_HEADER = {
-  badge: "Five connected solutions",
-  title: "One partner for the moving parts of modern life.",
-  description: "Use one service for a specific need or combine them through Ọmọ Ọdọ Concierge for ongoing coordination.",
+  badge: "02 · What we do",
+  title: "One buddy. Five ways to show up.",
+  description: "Start with the one you need today. Combine them through Concierge when you want one person keeping everything moving.",
 } as const;
-export const HOME_SERVICES_LINK: HeroCta = { label: "See how it works", href: "/how-it-works" };
+export const HOME_SERVICES_LINK: HeroCta = { label: "How we behave", href: "#values" };
 /** Sticky top offsets per stacked service card; each later card pins one rem lower so earlier cards peek above it. */
 export const HOME_SERVICE_STACK_OFFSETS: Readonly<Record<ServiceSlug, string>> = {
   concierge: "top-20",
@@ -25,12 +25,22 @@ export const HOME_SERVICE_STACK_OFFSETS: Readonly<Record<ServiceSlug, string>> =
   shop: "top-36",
 };
 
+/**
+ * Audience photos: real photographs from Unsplash, downloaded to public/images/audiences.
+ * All are "Free to use under the Unsplash License" (free for commercial use, no attribution required).
+ * - individuals.jpg: Adeniji Abdullahi A, https://unsplash.com/photos/_MExu0l-sCM
+ * - families.jpg: Muhammad-Taha Ibrahim (Abuja, Nigeria), https://unsplash.com/photos/HfC8mUqulJ8
+ * - diaspora.jpg: Vitaly Gariev, https://unsplash.com/photos/WNy6w1goBqo
+ * - professionals.jpg: Christina @ wocintechchat.com, https://unsplash.com/photos/L85a1k-XqH8
+ * - businesses.jpg: Blessing Olarewaju (Enugu, Nigeria), https://unsplash.com/photos/gsw3AP6I-EY
+ */
 export const HOME_AUDIENCES: readonly HomeAudience[] = [
   {
     id: "individuals",
+    image: { src: "/images/audiences/individuals.jpg", alt: "A smiling young woman in a white T-shirt holds her phone with both hands." },
     title: "Individuals",
     eyebrow: "Personal support",
-    description: "Everyday tasks, arrangements and responsibilities handled with care.",
+    description: "Your day has more on it than hours. We take the errands, pickups and follow-ups off your list.",
     iconName: "user",
     examples: [
       "Personal errands, shopping and deliveries",
@@ -41,9 +51,10 @@ export const HOME_AUDIENCES: readonly HomeAudience[] = [
   },
   {
     id: "families",
+    image: { src: "/images/audiences/families.jpg", alt: "Three sisters in matching floral outfits look at a phone together outside a house in Abuja." },
     title: "Families",
     eyebrow: "Family care",
-    description: "Coordination for services, purchases and responsibilities for loved ones.",
+    description: "Someone you love needs something done. We handle it with the care you would bring yourself.",
     iconName: "house",
     examples: [
       "Support, purchases and appointments for parents",
@@ -54,9 +65,10 @@ export const HOME_AUDIENCES: readonly HomeAudience[] = [
   },
   {
     id: "diaspora",
+    image: { src: "/images/audiences/diaspora.jpg", alt: "A Black businessman in a suit works on his laptop with earbuds in at a glass-walled cafe abroad." },
     title: "Nigerians in the diaspora",
     eyebrow: "Our speciality",
-    description: "A trusted presence on the ground that keeps you connected and involved.",
+    description: "You are far, but your responsibilities are here. We are your eyes, hands and voice on the ground.",
     iconName: "globe",
     examples: [
       "Property checks with time-stamped photos",
@@ -67,9 +79,10 @@ export const HOME_AUDIENCES: readonly HomeAudience[] = [
   },
   {
     id: "professionals",
+    image: { src: "/images/audiences/professionals.jpg", alt: "A Black woman entrepreneur works on a laptop at an office desk." },
     title: "Busy professionals",
     eyebrow: "Delegation",
-    description: "Dependable delegation when your time and attention are already committed.",
+    description: "Your attention is already spoken for. Hand us the task and get it back finished.",
     iconName: "briefcase",
     examples: [
       "Airport pick-up, car hire and travel arrangements",
@@ -80,9 +93,10 @@ export const HOME_AUDIENCES: readonly HomeAudience[] = [
   },
   {
     id: "businesses",
+    image: { src: "/images/audiences/businesses.jpg", alt: "A Nigerian business owner stands in front of his store in Enugu with his arms crossed." },
     title: "Businesses",
     eyebrow: "Operations",
-    description: "Local coordination, procurement, representation and operational follow-through.",
+    description: "You need a local presence you can rely on. We coordinate, represent and follow through.",
     iconName: "building",
     examples: [
       "Vendor, supplier and procurement coordination",
@@ -100,40 +114,15 @@ export const HOME_PRICING_OPTIONS = [
   { title: "Concierge retainers", description: "For continuous, personalised support for people, families and businesses." },
 ] as const;
 
-export const HOME_SERVICE_PROMISES: readonly ServicePromise[] = [
+export const HOME_PURPOSE: readonly HomePurpose[] = [
   {
-    title: "Clear updates",
-    description: "Real-time milestone tracking, direct supervisor check-ins, and live progress at every stage.",
-    badge: "LIVE MILESTONES",
-    iconName: "radio",
-  },
-  {
-    title: "Visible evidence",
-    description: "Itemized receipts, time-stamped photographs, and signed completion records shared directly.",
-    badge: "FORENSIC PROOF",
-    iconName: "camera",
-  },
-  {
-    title: "Transparent costs",
-    description: "Third-party vendor procurement separated from Ọmọ Ọdọ management with zero markups.",
-    badge: "ZERO MARKUP",
-    iconName: "receipt",
-  },
-  {
-    title: "Owned outcomes",
-    description: "Accepted responsibilities backed by escrow and managed through to confirmed handover.",
-    badge: "ESCROW SECURED",
-    iconName: "shield",
-  },
-] as const;
-
-export const HOME_PURPOSE = [
-  {
+    id: "vision",
     title: "Our vision",
     description: "To become a trusted partner for individuals, families and businesses who need reliable support, representation and coordination wherever they are.",
   },
   {
+    id: "mission",
     title: "Our mission",
     description: "To make life easier through reliable, responsive and personalised support for responsibilities people may not have the time, presence or capacity to handle themselves.",
   },
-] as const;
+];

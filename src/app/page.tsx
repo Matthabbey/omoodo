@@ -1,6 +1,7 @@
 import { HomeHero } from "../components/hero/HomeHero";
 import { HeroQuickInquiry } from "../components/hero/HeroQuickInquiry";
 import { ValuesSection } from "../components/home/ValuesSection";
+import { HomeFaqSection } from "../components/home/HomeFaqSection";
 import { HomeFinalCta } from "../components/home/HomeFinalCta";
 import { HomeIntroduction } from "../components/home/HomeIntroduction";
 import { HomeKnowledgeSections } from "../components/home/HomeKnowledgeSections";
@@ -19,6 +20,7 @@ export default function Home() {
       <HomeServicesStory />
       <ValuesSection />
       <HomeKnowledgeSections />
+      <HomeFaqSection />
       <HomeFinalCta />
     </main>
   );

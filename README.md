@@ -28,23 +28,12 @@ to create a production build.
 Use the existing feature structure, shared theme tokens, and agent guidance
 when adding new routes or UI.
 
-## Contact submissions
+## WhatsApp contact
 
-Configure `CONTACT_BACKEND_URL` in the server environment with the backend
-endpoint that accepts contact-request JSON. The Next.js `POST /api/contact`
-route validates the form fields and forwards the request to that endpoint. The
-form reports a configuration error rather than claiming success when the
-backend URL is missing.
-
-The form follows the customer-facing sections in
-`app_scheme_images/Omoodo Service Request Form.pdf`. It supports multiple
-service selections in a guided stepper, task checklists, conditional
-service-specific detail steps, request overview, optional concierge-retainer
-steps, update preferences, authorisation, and the customer declaration.
-
-The forwarded JSON contains `name`, `email`, `phone`, `service` (primary
-selection or `general`), `services` (all selected categories),
-`serviceRequests` (selected tasks grouped by service), `location`, `message`,
-and `details` (the supplied answers keyed by field). Service values are
-`concierge`, `move`, `stay`, `home-care`, and `shop`; location values are
-`lagos`, `abuja`, `port-harcourt`, `other-nigeria`, and `international`.
+The `/contact` page is a single-step "Request an errand" form. Submitting it
+opens WhatsApp with the answers prefilled as a message to the business number
+in `NEXT_PUBLIC_WHATSAPP_NUMBER` (international format, digits only, for
+example `2348012345678`). Set it in `.env.local` for development and in the
+hosting environment for production. When it is unset the form disables its
+submit button and explains why, and the floating "WhatsApp us" button is not
+rendered. Nothing is sent to a backend.

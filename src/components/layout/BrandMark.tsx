@@ -6,6 +6,8 @@ type BrandMarkSize = "sm" | "md";
 interface BrandMarkProps {
   priority?: boolean;
   size?: BrandMarkSize;
+  /** White wordmark for use on `deep`/`brand` surfaces. */
+  inverted?: boolean;
 }
 
 const MARK_PIXELS: Record<BrandMarkSize, number> = { sm: 36, md: 44 };
@@ -15,8 +17,9 @@ const WORDMARK_CLASS: Record<BrandMarkSize, string> = {
   md: "text-xl sm:text-2xl",
 };
 
-export function BrandMark({ priority = false, size = "md" }: BrandMarkProps) {
+export function BrandMark({ priority = false, size = "md", inverted = false }: BrandMarkProps) {
   const pixels = MARK_PIXELS[size];
+  const wordmarkColor = inverted ? "text-on-brand" : "text-brand";
 
   return (
     <span className="inline-flex items-center gap-2.5">
@@ -28,7 +31,7 @@ export function BrandMark({ priority = false, size = "md" }: BrandMarkProps) {
         src={BRAND_MARK_SRC}
         width={pixels}
       />
-      <span className={`whitespace-nowrap font-black leading-none tracking-tight text-brand ${WORDMARK_CLASS[size]}`}>
+      <span className={`whitespace-nowrap font-black leading-none tracking-tight ${wordmarkColor} ${WORDMARK_CLASS[size]}`}>
         {BRAND_NAME}
       </span>
     </span>

@@ -47,6 +47,8 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
             )}
             id={inputId}
             ref={ref}
+            // Mobile browsers (Chrome iOS autofill) tag fields with their own attributes before hydration.
+            suppressHydrationWarning
             {...props}
           />
         </div>

@@ -1,5 +1,3 @@
-import type { ServiceSlug } from "./service";
-
 export type HeroIconName =
   | "shield-check"
   | "car"
@@ -31,18 +29,4 @@ export interface HeroImage {
 export interface HeroTrustFact {
   readonly iconName: HeroIconName;
   readonly label: string;
-}
-
-export interface HeroProofCard {
-  readonly title: string;
-  readonly location: string;
-  readonly meta: string;
-  readonly time: string;
-}
-
-export interface HeroPillarLink {
-  readonly slug: ServiceSlug;
-  readonly label: string;
-  readonly href: string;
-  readonly iconName: HeroIconName;
 }

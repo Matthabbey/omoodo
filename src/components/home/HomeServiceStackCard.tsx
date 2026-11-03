@@ -13,7 +13,7 @@ interface HomeServiceStackCardProps {
 export function HomeServiceStackCard({ service, offsetClass }: HomeServiceStackCardProps) {
   return (
     <li className={cn("sticky", offsetClass)}>
-      <article className="group relative isolate flex h-[78svh] min-h-[30rem] flex-col justify-between overflow-hidden rounded-[2rem] bg-deep text-on-brand shadow-xl shadow-deep/20 sm:rounded-[2.5rem]">
+      <article className="group relative isolate flex min-h-[70svh] flex-col justify-between overflow-hidden rounded-[2rem] bg-deep text-on-brand shadow-xl shadow-deep/20 sm:rounded-[2.5rem] lg:min-h-[78svh]">
         <Image
           alt={service.imageAlt}
           className="object-cover transition duration-1000 group-hover:scale-105 motion-reduce:transform-none"
@@ -36,7 +36,14 @@ export function HomeServiceStackCard({ service, offsetClass }: HomeServiceStackC
             <h3 className="text-3xl font-bold leading-[1.05] tracking-tight sm:text-5xl">{service.headline}</h3>
             <p className="mt-4 max-w-xl text-base leading-7 text-white/85 sm:text-lg">{service.description}</p>
           </div>
-          <div className="w-full max-w-sm rounded-3xl border border-white/20 bg-surface/90 p-5 text-foreground shadow-lg backdrop-blur-md lg:shrink-0">
+          <Link
+            className={cn(buttonVariants({ variant: "accent", size: "lg" }), "w-full font-bold sm:hidden")}
+            href={`/${service.slug}`}
+          >
+            Explore {service.name}
+            <ArrowUpRight aria-hidden="true" className="h-4 w-4" />
+          </Link>
+          <div className="hidden w-full max-w-sm rounded-3xl border border-white/20 bg-surface/90 p-5 text-foreground shadow-lg backdrop-blur-md sm:block lg:shrink-0">
             <div className="flex items-start justify-between gap-4">
               <p className="text-xs font-black uppercase tracking-[0.2em] text-brand">What&apos;s included</p>
               <Link

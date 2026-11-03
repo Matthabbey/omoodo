@@ -1,14 +1,14 @@
 import type { HeroPillarId } from "../types/hero";
-import type { ContactLocation, ContactService } from "../types/contact";
-
-export const CONTACT_SERVICE_OPTIONS = [
-  { value: "general", label: "General enquiry" },
-  { value: "concierge", label: "Concierge & representation" },
-  { value: "move", label: "Move & transportation" },
-  { value: "stay", label: "Stay & accommodation" },
-  { value: "home-care", label: "Home & lifestyle care" },
-  { value: "shop", label: "Shop & procurement" },
-] as const satisfies readonly { readonly value: ContactService; readonly label: string }[];
+import type {
+  ContactLocation,
+  ContactPageCopy,
+  ContactService,
+  ErrandCustomerType,
+  ErrandOption,
+  ErrandService,
+} from "../types/contact";
+import { BRAND_NAME } from "./brand";
+import { SERVICE_PAGES } from "./services";
 
 export const CONTACT_LOCATION_OPTIONS = [
   { value: "lagos", label: "Lagos" },
@@ -42,8 +42,43 @@ export function getContactHref(service: HeroPillarId, location: string): string 
   return `/contact?${query.toString()}`;
 }
 
-export const CONTACT_DEFAULTS = {
-  service: "general" as ContactService,
-  location: "lagos" as ContactLocation,
-  message: "",
+export const ERRAND_CUSTOMER_TYPES: readonly ErrandOption<ErrandCustomerType>[] = [
+  { value: "individual", label: "Individual" },
+  { value: "family", label: "Family" },
+  { value: "diaspora", label: "Nigerian in the diaspora" },
+  { value: "professional", label: "Busy professional" },
+  { value: "business", label: "Business" },
+];
+
+export const ERRAND_SERVICE_OPTIONS: readonly ErrandOption<ErrandService>[] = [
+  ...SERVICE_PAGES.map(
+    (service): ErrandOption<ErrandService> => ({ value: service.slug, label: `${BRAND_NAME} ${service.name}` }),
+  ),
+  { value: "unsure", label: "Not sure yet" },
+];
+
+export const CONTACT_PAGE_COPY: ContactPageCopy = {
+  headline: "What can we take off your list?",
+  intro: "Share a few details about the task. Your request will be prepared as a WhatsApp message to our business number.",
+  bullets: [
+    { iconName: "message-circle", label: "WhatsApp enquiries" },
+    { iconName: "globe", label: "Local and diaspora customers" },
+    { iconName: "receipt", label: "Clear costs before we begin" },
+  ],
+  formTitle: "Request an errand",
+  requiredNote: "Fields marked * are required.",
+  fields: {
+    name: { label: "Your name *", placeholder: "Full name" },
+    phone: { label: "Your phone / WhatsApp *", placeholder: "+234..." },
+    customerType: { label: "I am a *", placeholder: "Choose one" },
+    location: { label: "Errand location in Nigeria *", placeholder: "Area / city" },
+    service: { label: "Service required *", placeholder: "Choose a service" },
+    timing: { label: "When do you need it?", placeholder: "e.g. Friday afternoon" },
+    details: { label: "Task details *", placeholder: "Describe the task and any instructions" },
+  },
+  selectRequired: "Please choose an option.",
+  submitLabel: "Send via WhatsApp",
+  successNote: "Your message is ready in WhatsApp.",
+  fallbackLinkLabel: "If it did not open, tap here.",
+  notConfigured: "WhatsApp requests are not configured yet. Set NEXT_PUBLIC_WHATSAPP_NUMBER to enable this form.",
 };

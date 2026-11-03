@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { SiteFooter } from "../components/layout/SiteFooter";
 import { SiteHeader } from "../components/layout/SiteHeader";
 import { CustomScrollbars } from "../components/layout/CustomScrollbars";
+import { WhatsAppFab } from "../components/layout/WhatsAppFab";
 import { BRAND_DESCRIPTION, BRAND_SITE_TITLE, BRAND_TITLE_TEMPLATE } from "../constants/brand";
 import { getSiteUrl } from "../lib/site-url";
 import "./globals.css";
@@ -16,12 +17,14 @@ export const metadata: Metadata = {
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
+  // suppressHydrationWarning: browsers and extensions (Chrome iOS autofill, Grammarly) add attributes to <html>/<body> before React hydrates.
   return (
-    <html lang="en">
-      <body className="font-sans antialiased">
+    <html data-scroll-behavior="smooth" lang="en" suppressHydrationWarning>
+      <body className="font-sans antialiased" suppressHydrationWarning>
         <SiteHeader />
         {children}
         <SiteFooter />
+        <WhatsAppFab />
         <CustomScrollbars />
       </body>
     </html>

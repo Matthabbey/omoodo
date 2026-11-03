@@ -33,6 +33,8 @@ export function Textarea({
           className
         )}
         id={inputId}
+        // Mobile browsers (Chrome iOS autofill) tag fields with their own attributes before hydration.
+        suppressHydrationWarning
         {...props}
       />
       {error && <p className="text-xs font-medium text-red-600" id={`${inputId}-error`} role="alert">{error}</p>}

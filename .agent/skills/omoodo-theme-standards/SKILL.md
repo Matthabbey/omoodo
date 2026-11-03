@@ -46,6 +46,8 @@ Open Graph image live beside `src/app/layout.tsx` as file-based metadata.
   `text-on-accent` (not `text-on-brand`) on a `bg-accent` fill.
 - `culture-green`, `culture-gold`, and `culture-red` are a separate
   Pan-African family for the cultural watermark art, not general accents.
+- `whatsapp` / `on-whatsapp` are reserved for the WhatsApp hand-off action
+  (the floating `WhatsAppFab` and nothing else); never use them as accents.
 - Establish or reuse semantic theme tokens for those roles. Use the project's
   token mechanism rather than hard-coded hex/RGB/HSL values, arbitrary color
   utilities, raw palette classes, inline colors, or isolated `dark:` overrides.
@@ -101,21 +103,32 @@ Use these as starting patterns, adapting them to the feature's user and task:
 
 - **Marketing or discovery landing:** use a concise headline and supporting
   copy, one clear primary action, and a relevant image or illustration.
-  The home hero is a full-viewport, untinted photograph (`HeroBackdrop`,
-  no colour overlay) with the copy in a clear zone: on large screens a
-  frosted `surface` panel (translucent, blurred, bordered) holds the copy
-  in the usual light-surface tones (wine eyebrow, `foreground` headline
-  with the key word in wine over a gold underline, `brand` primary CTA and
-  gold `accent` secondary CTA), with the `surface` proof card on the photo
-  to the right and bordered `surface` chips for secondary navigation along
-  the bottom edge. On small screens the photo is a cropped band above the
-  copy, and the proof card and chips are hidden so the hero fits one
-  viewport. Inner-page heroes (for example `/how-it-works`) use a split
+  The home hero is a full-viewport slider (`HeroSlider`): one slide per
+  highlight (the brand promise, then each service) from `HERO_SLIDES`, each a
+  full-bleed licensed photograph under a `deep` gradient with the eyebrow in
+  gold, a white headline, one short paragraph, and an `accent` primary CTA
+  paired with the translucent `secondary` pill. A row of labelled tabs along
+  the bottom (kicker plus promise, gold progress underline) doubles as the
+  slide indicator; prev, pause and next use the `secondary` icon `Button`.
+  Slides auto-advance every seven seconds (never paused by hover, since the
+  pointer is almost always over a full-viewport hero), stop only via the
+  pause control, support arrow keys and swipe, and switch without a slide
+  transition under `prefers-reduced-motion`. Photos are positioned near the
+  top (`HERO_SLIDE_DEFAULT_FOCAL`, overridable per slide) so heads stay in
+  frame on tall viewports. Inner-page heroes (for example `/how-it-works`) use a split
   hero instead; when no licensed photograph exists, the right column is
   an illustrated, token-based visual built from existing patterns (`surface`
   cards, an `accent` progress line, CSS keyframes disabled under
   `prefers-reduced-motion`), never an AI render. Elsewhere, arrange text and
   imagery side by side on wide screens and stack them on narrow screens.
+- **Voice and narrative:** the home page reads as one story. The hero makes
+  the promise, sections 01-08 carry numbered chapter eyebrows ("01 · Why we
+  exist" … "07 · Good to know" FAQs as native `details` disclosures, "08 · Your
+  move") and each hands off to the next, and the multi-column `SiteFooter`
+  signs off with the tagline. "Buddy" is the brand voice word at the open and
+  close; "trusted partner" is reserved for the purpose statement in the intro
+  headline. Section copy lives in `src/constants/home-copy.ts` and
+  `src/constants/home.ts`, never inline in components.
 - **Search and browse:** present the search/filter controls as one coherent
   group, keep the main submit action visually prominent, and show results in
   consistent cards with scannable metadata and clear click targets.
@@ -125,7 +138,10 @@ Use these as starting patterns, adapting them to the feature's user and task:
 - **Forms and onboarding:** use persistent labels, clear input affordances,
   logical grouping, visible selected states, concise validation, and one
   prominent forward action. Keep progress and recovery paths visible when
-  relevant.
+  relevant. The contact page is the reference form: a single-step
+  `ContactRequestForm` beside a `deep` intro panel (`ContactIntroPanel`) that
+  prepares a WhatsApp message (`buildErrandMessage`) instead of posting to a
+  backend; required labels end in " *" and the page notes it.
 - **Card rail:** the home "Why Ọmọ Ọdọ exists" section uses
   `HomeAudienceCarousel`: a horizontally scrolling, scroll-snap rail of tall
   `rounded-[2rem]` cards that alternate `deep` and `surface` tones. Each card

@@ -40,15 +40,6 @@ export function SiteHeader() {
     };
   }, []);
 
-  useEffect(() => {
-    document.documentElement.classList.toggle("contact-page-locked", pathname === "/contact");
-    document.body.classList.toggle("contact-page-locked", pathname === "/contact");
-    return () => {
-      document.documentElement.classList.remove("contact-page-locked");
-      document.body.classList.remove("contact-page-locked");
-    };
-  }, [pathname]);
-
   return (
     <header
       className="sticky top-0 z-50 border-b border-border bg-surface/75 backdrop-blur-md"

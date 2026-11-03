@@ -1,5 +1,7 @@
 import { CulturalWatermarks } from "./CulturalWatermarks";
+import { BRAND_LEGAL_NAME } from "../../constants/brand";
 import { HOME_WATERMARK_ART } from "../../constants/cultural-watermarks";
+import { HOME_VALUES_COPY, HOME_VALUES_TITLE_EMPHASIS, VALUES_SECTION_ID } from "../../constants/home-copy";
 import { ScrollReveal } from "./ScrollReveal";
 
 export function ValuesSection() {
@@ -7,7 +9,7 @@ export function ValuesSection() {
     <section
       aria-labelledby="values-title"
       className="relative isolate overflow-hidden border-t border-border bg-background py-20 sm:py-28"
-      id="values"
+      id={VALUES_SECTION_ID}
     >
       <CulturalWatermarks designs={HOME_WATERMARK_ART} />
 
@@ -16,19 +18,18 @@ export function ValuesSection() {
           <div className="max-w-3xl">
             <span className="inline-flex items-center gap-3 text-xs font-bold uppercase tracking-[0.18em] text-brand">
               <span aria-hidden="true" className="h-px w-8 bg-accent" />
-              The Ọmọ Ọdọ difference
+              {HOME_VALUES_COPY.eyebrow}
             </span>
             <h2
               className="mt-5 text-4xl font-bold leading-tight tracking-tight text-foreground sm:text-5xl"
               id="values-title"
             >
-              Good service is personal.{" "}
-              <span className="text-brand">Trust is how we deliver it.</span>
+              {HOME_VALUES_COPY.title}{" "}
+              <span className="text-brand">{HOME_VALUES_TITLE_EMPHASIS}</span>
             </h2>
           </div>
           <p className="max-w-xl text-base leading-7 text-muted lg:justify-self-end">
-            From the first conversation to the final detail, we bring
-            accountability, care, and local knowledge to every commitment.
+            {HOME_VALUES_COPY.description}
           </p>
         </div>
 
@@ -104,7 +105,7 @@ export function ValuesSection() {
           <p className="font-semibold text-foreground">
             Rooted in local knowledge. Ready wherever life takes you.
           </p>
-          <p className="text-sm text-muted">Ọmọ Ọdọ Concierge & Lifestyle Services</p>
+          <p className="text-sm text-muted">{BRAND_LEGAL_NAME}</p>
         </div>
       </ScrollReveal>
     </section>

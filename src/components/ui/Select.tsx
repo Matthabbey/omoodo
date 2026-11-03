@@ -130,6 +130,7 @@ export function Select({
 
       {/* Brand Trigger Button */}
       <button
+        aria-describedby={error ? `${selectId}-error` : hint ? `${selectId}-hint` : undefined}
         aria-expanded={isOpen}
         aria-haspopup="listbox"
         className={cn(
@@ -190,8 +191,8 @@ export function Select({
         </ul>
       )}
 
-      {error && <p className="text-xs font-medium text-red-600" role="alert">{error}</p>}
-      {hint && !error && <p className="text-xs text-muted">{hint}</p>}
+      {error && <p className="text-xs font-medium text-red-600" id={`${selectId}-error`} role="alert">{error}</p>}
+      {hint && !error && <p className="text-xs text-muted" id={`${selectId}-hint`}>{hint}</p>}
     </div>
   );
 }

@@ -86,7 +86,7 @@ export const SERVICE_OPTIONS = [
   { value: "concierge", label: "Ọmọ Ọdọ Concierge · Property & Representation" },
   { value: "move", label: "Ọmọ Ọdọ Move · Mobility & Airport Transfers" },
   { value: "stay", label: "Ọmọ Ọdọ Stay · Serviced Apartments & Stays" },
-  { value: "home", label: "Ọmọ Ọdọ Home · Laundry & Lifestyle Support" },
+  { value: "home", label: "Ọmọ Ọdọ Home Care · Laundry & Lifestyle Support" },
   { value: "shop", label: "Ọmọ Ọdọ Shop · Sourcing & Procurement" },
 ] as const satisfies readonly { value: HeroPillarId; label: string }[];
 

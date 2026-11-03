@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import { ArrowRight, MapPin, Briefcase } from "lucide-react";
 import { SERVICE_OPTIONS } from "../../constants/services";
 import { getContactHref } from "../../constants/contact";
+import { QUICK_FINDER_COPY } from "../../constants/home-copy";
 import type { HeroPillarId } from "../../types/hero";
 import { Button, Select } from "../ui";
 
@@ -21,14 +22,15 @@ export function HeroQuickInquiry() {
 
   return (
     <form
-      aria-label="Ọmọ Ọdọ Quick Service Finder"
+      aria-label={QUICK_FINDER_COPY.formLabel}
       className="flex flex-col gap-4 rounded-2xl border border-border bg-surface p-4 shadow-md [&_label]:text-sm md:flex-row md:items-center md:gap-5 md:p-5 md:[&_button]:h-14 md:[&_button]:text-base"
       onSubmit={handleSubmit}
+      suppressHydrationWarning
     >
       <div className="min-w-0 flex-1">
         <Select
           icon={<Briefcase className="h-4 w-4" />}
-          label="What service do you need?"
+          label={QUICK_FINDER_COPY.serviceLabel}
           onChange={(val) => {
             const service = SERVICE_OPTIONS.find(
               (option) => option.value === val,
@@ -43,7 +45,7 @@ export function HeroQuickInquiry() {
       <div className="min-w-0 flex-1">
         <Select
           icon={<MapPin className="h-4 w-4" />}
-          label="Location on ground"
+          label={QUICK_FINDER_COPY.locationLabel}
           onChange={(val) => setSelectedLocation(val)}
           options={[
             { value: "lagos", label: "Lagos (Island & Mainland)" },
@@ -62,7 +64,7 @@ export function HeroQuickInquiry() {
           type="submit"
           variant="primary"
         >
-          <span>Get Started</span>
+          <span>{QUICK_FINDER_COPY.submitLabel}</span>
           <ArrowRight className="h-4 w-4" />
         </Button>
       </div>

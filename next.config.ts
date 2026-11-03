@@ -1,7 +1,9 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  // allowedDevOrigins: ["192.168.0.2"],
+  // Devices on the LAN that may load dev resources (phones testing via the machine's IP).
+  // Add your machine's current IP here when it changes; production is unaffected.
+  allowedDevOrigins: ["192.168.101.9", "192.168.0.2"],
   cacheComponents: true,
   partialPrefetching: true,
   turbopack: {
