@@ -6,5 +6,7 @@ export const BRAND_MARK_SRC = "/images/brand/omoodo-mark.png";
 export const BRAND_MARK_ALT = `${BRAND_NAME} emblem`;
 export const BRAND_SITE_TITLE = `${BRAND_NAME} · ${BRAND_TAGLINE}`;
 export const BRAND_TITLE_TEMPLATE = `%s | ${BRAND_NAME}`;
+/** Public origin of the live site; used for absolute link-preview and icon URLs when no env override is set. */
+export const BRAND_SITE_ORIGIN = "https://omoodong.com";
 export const BRAND_DESCRIPTION =
   "Thoughtful concierge and lifestyle services, coordinated locally. Ọmọ Ọdọ is your reliable buddy for home, moves, stays and shopping.";

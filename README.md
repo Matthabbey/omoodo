@@ -32,11 +32,12 @@ when adding new routes or UI.
 
 Shared links show the logo card in `src/app/opengraph-image.jpg`. Messaging
 apps fetch that image from an absolute URL built from `metadataBase`, so the
-site must know its public origin. On Vercel this is picked up automatically
-from `VERCEL_PROJECT_PRODUCTION_URL`. On any other host, or for a custom
-domain, set `NEXT_PUBLIC_SITE_URL` (for example `https://omoodo.com`) in the
-hosting environment and redeploy. Without it the image URL points at
-`localhost` and previews show no logo. Previews from a dev or LAN URL cannot
+site must know its public origin. Production builds default to
+`BRAND_SITE_ORIGIN` in `src/constants/brand.ts` (https://omoodong.com); on
+Vercel the production URL is picked up automatically, and
+`NEXT_PUBLIC_SITE_URL` overrides both (for example for a staging domain).
+If the domain ever changes, update `BRAND_SITE_ORIGIN` or set the variable;
+if the origin resolved to `localhost`, previews would show no logo. Previews from a dev or LAN URL cannot
 work, because WhatsApp cannot reach your machine. WhatsApp also caches a
 link's preview, so test with a URL it has not seen before (add `?v=2`).
 
