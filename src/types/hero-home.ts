@@ -14,7 +14,11 @@ export type HeroIconName =
   | "users"
   | "globe"
   | "briefcase"
-  | "house";
+  | "house"
+  | "concierge-bell"
+  | "bed"
+  | "calendar-heart"
+  | "heart-handshake";
 
 export interface HeroCta {
   readonly label: string;

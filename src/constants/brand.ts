@@ -1,5 +1,7 @@
 export const BRAND_NAME = "Ọmọ Ọdọ";
 export const BRAND_TAGLINE = "Your reliable buddy";
+/** The one label used for every "start a request" button and link. */
+export const PRIMARY_CTA_LABEL = "Request support";
 export const BRAND_LEGAL_NAME = "Ọmọ Ọdọ Concierge & Lifestyle Services";
 export const BRAND_HOME_LABEL = `${BRAND_NAME} home`;
 export const BRAND_MARK_SRC = "/images/brand/omoodo-mark.png";
@@ -9,4 +11,4 @@ export const BRAND_TITLE_TEMPLATE = `%s | ${BRAND_NAME}`;
 /** Public origin of the live site; used for absolute link-preview and icon URLs when no env override is set. */
 export const BRAND_SITE_ORIGIN = "https://omoodong.com";
 export const BRAND_DESCRIPTION =
-  "Thoughtful concierge and lifestyle services, coordinated locally. Ọmọ Ọdọ is your reliable buddy for home, moves, stays and shopping.";
+  "Thoughtful concierge and lifestyle services, coordinated locally. Ọmọ Ọdọ is your reliable buddy for concierge support, moves, stays, home care, shopping, events and giving projects.";

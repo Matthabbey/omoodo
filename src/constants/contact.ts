@@ -7,7 +7,7 @@ import type {
   ErrandOption,
   ErrandService,
 } from "../types/contact";
-import { BRAND_NAME } from "./brand";
+import { BRAND_NAME, PRIMARY_CTA_LABEL } from "./brand";
 import { SERVICE_PAGES } from "./services";
 
 export const CONTACT_LOCATION_OPTIONS = [
@@ -65,7 +65,7 @@ export const CONTACT_PAGE_COPY: ContactPageCopy = {
     { iconName: "globe", label: "Local and diaspora customers" },
     { iconName: "receipt", label: "Clear costs before we begin" },
   ],
-  formTitle: "Request an errand",
+  formTitle: PRIMARY_CTA_LABEL,
   requiredNote: "Fields marked * are required.",
   fields: {
     name: { label: "Your name *", placeholder: "Full name" },

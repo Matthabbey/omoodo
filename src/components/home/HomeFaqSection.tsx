@@ -1,13 +1,16 @@
 import { ChevronDown } from "lucide-react";
+import { SIMPLE_WATERMARK_ART } from "../../constants/cultural-watermarks";
 import { FAQ_SECTION_ID, HOME_FAQ_COPY, HOME_FAQS } from "../../constants/faqs";
 import { Badge } from "../ui";
+import { CulturalWatermarks } from "./CulturalWatermarks";
 import { ScrollReveal } from "./ScrollReveal";
 
 /** Chapter 07: native disclosure elements, so the answers open without any script. */
 export function HomeFaqSection() {
   return (
-    <section className="scroll-mt-20 border-t border-border bg-background py-20 sm:py-28" id={FAQ_SECTION_ID}>
-      <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
+    <section className="relative isolate scroll-mt-20 border-t border-border bg-background py-20 sm:py-28" id={FAQ_SECTION_ID}>
+      <CulturalWatermarks designs={SIMPLE_WATERMARK_ART} />
+      <div className="relative z-10 mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="grid gap-10 lg:grid-cols-[0.8fr_1.2fr] lg:gap-16">
           <ScrollReveal className="lg:sticky lg:top-24 lg:self-start" effect="skew-left">
             <Badge variant="soft">{HOME_FAQ_COPY.eyebrow}</Badge>

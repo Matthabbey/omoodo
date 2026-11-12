@@ -1,29 +1,14 @@
 import type { HeroCta } from "../types/hero-home";
 import type { HomeAudience, HomePurpose } from "../types/home";
-import type { ServiceSlug } from "../types/service";
+import { PRIMARY_CTA_LABEL } from "./brand";
 import { getContactHref } from "./contact";
 
 export const HOME_INTRO_HEADLINE_LEAD = "A";
 export const HOME_INTRO_HEADLINE_EMPHASIS = "trusted partner";
 export const HOME_INTRO_HEADLINE_TAIL = "for the things you cannot always handle yourself.";
 
-export const HOME_INTRO_PRIMARY_CTA: HeroCta = { label: "Tell us what you need", href: "/contact" };
+export const HOME_INTRO_PRIMARY_CTA: HeroCta = { label: PRIMARY_CTA_LABEL, href: "/contact" };
 export const HOME_INTRO_SECONDARY_CTA: HeroCta = { label: "Who we help", href: "#audiences" };
-
-export const HOME_SERVICES_HEADER = {
-  badge: "02 · What we do",
-  title: "One buddy. Five ways to show up.",
-  description: "Start with the one you need today. Combine them through Concierge when you want one person keeping everything moving.",
-} as const;
-export const HOME_SERVICES_LINK: HeroCta = { label: "How we behave", href: "#values" };
-/** Sticky top offsets per stacked service card; each later card pins one rem lower so earlier cards peek above it. */
-export const HOME_SERVICE_STACK_OFFSETS: Readonly<Record<ServiceSlug, string>> = {
-  concierge: "top-20",
-  move: "top-24",
-  stay: "top-28",
-  "home-care": "top-32",
-  shop: "top-36",
-};
 
 /**
  * Audience photos: real photographs from Unsplash, downloaded to public/images/audiences.
@@ -89,7 +74,7 @@ export const HOME_AUDIENCES: readonly HomeAudience[] = [
       "Laundry, car wash and everyday errands",
       "Hotel and apartment bookings handled end to end",
     ],
-    cta: { label: "Delegate your next task", href: "/contact" },
+    cta: { label: "Request support for your work", href: "/contact" },
   },
   {
     id: "businesses",

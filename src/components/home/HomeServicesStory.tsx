@@ -1,38 +1,25 @@
-import Link from "next/link";
-import { ChevronRight } from "lucide-react";
-import { HOME_SERVICE_STACK_OFFSETS, HOME_SERVICES_HEADER, HOME_SERVICES_LINK } from "../../constants/home";
-import { SERVICE_PAGES } from "../../constants/services";
-import { Badge } from "../ui";
-import { HomeServiceStackCard } from "./HomeServiceStackCard";
+import { SIMPLE_WATERMARK_ART } from "../../constants/cultural-watermarks";
+import { HOME_SERVICE_CARDS, HOME_SERVICE_TOP_ROW_COUNT, HOME_SERVICES_SECTION_LABEL } from "../../constants/home-services";
+import { getServicePage } from "../../constants/services";
+import { CulturalWatermarks } from "./CulturalWatermarks";
+import { HomeServiceCard } from "./HomeServiceCard";
 import { ScrollReveal } from "./ScrollReveal";
 
 export function HomeServicesStory() {
   return (
-    <section aria-labelledby="solutions-title" className="scroll-mt-20 bg-background py-20 sm:py-28" id="services">
-      <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
-        <ScrollReveal className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between" effect="rise">
-          <div className="max-w-3xl">
-            <Badge variant="accent">{HOME_SERVICES_HEADER.badge}</Badge>
-            <h2 className="mt-5 text-4xl font-bold leading-[1.2] tracking-tight sm:text-5xl" id="solutions-title">
-              {HOME_SERVICES_HEADER.title}
-            </h2>
-            <p className="mt-5 max-w-2xl text-lg leading-8 text-muted">{HOME_SERVICES_HEADER.description}</p>
-          </div>
-          <Link className="inline-flex items-center gap-1 font-semibold text-brand transition-colors hover:text-brand-deep lg:shrink-0 lg:pb-3" href={HOME_SERVICES_LINK.href}>
-            {HOME_SERVICES_LINK.label}
-            <ChevronRight aria-hidden="true" className="h-4 w-4" />
-          </Link>
+    <section aria-label={HOME_SERVICES_SECTION_LABEL} className="relative isolate scroll-mt-20 bg-background py-10 sm:py-14" id="services">
+      <CulturalWatermarks designs={SIMPLE_WATERMARK_ART} />
+      <div className="relative z-10 mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
+        <ScrollReveal effect="rise">
+          <ul className="grid gap-5 sm:grid-cols-2 lg:grid-cols-12">
+            {HOME_SERVICE_CARDS.map((card, index) => {
+              const service = getServicePage(card.slug);
+              if (!service) throw new Error(`Service content is not configured for "${card.slug}".`);
+              const spanClass = index < HOME_SERVICE_TOP_ROW_COUNT ? "lg:col-span-4" : "lg:col-span-3";
+              return <HomeServiceCard card={card} className={spanClass} key={card.slug} service={service} />;
+            })}
+          </ul>
         </ScrollReveal>
-
-        <ul className="relative mt-12 space-y-6 sm:space-y-8">
-          {SERVICE_PAGES.map((service) => (
-            <HomeServiceStackCard
-              key={service.slug}
-              offsetClass={HOME_SERVICE_STACK_OFFSETS[service.slug]}
-              service={service}
-            />
-          ))}
-        </ul>
       </div>
     </section>
   );

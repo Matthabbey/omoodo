@@ -8,6 +8,7 @@ import { NAV_LEADING_LINKS, NAV_TRAILING_LINKS } from "../../constants/navigatio
 import { SERVICE_PAGES } from "../../constants/services";
 import { SERVICE_MENU_WATERMARK_ART } from "../../constants/cultural-watermarks";
 import { cn } from "../../lib/utils";
+import { HeroIcon } from "../hero/HeroIcon";
 import { CulturalWatermarks } from "../home/CulturalWatermarks";
 import { buttonVariants } from "../ui";
 import { BRAND_HOME_LABEL } from "../../constants/brand";
@@ -117,7 +118,7 @@ export function SiteHeader() {
                 {SERVICE_PAGES.map((service) => (
                   <Link
                     aria-current={pathname === `/${service.slug}` ? "page" : undefined}
-                    className={`group rounded-xl border p-3 transition ${
+                    className={`group flex items-center gap-3 rounded-xl border p-3 transition ${
                       pathname === `/${service.slug}`
                         ? "border-border bg-brand-soft/70"
                         : "border-transparent hover:border-border hover:bg-brand-soft/50"
@@ -125,14 +126,18 @@ export function SiteHeader() {
                     href={`/${service.slug}`}
                     key={service.slug}
                   >
-                    <span className={`flex items-center justify-between gap-3 text-sm font-bold ${
-                      pathname === `/${service.slug}` ? "text-brand" : "text-foreground group-hover:text-brand"
-                    }`}>
-                      {service.name}
-                      <ArrowRight aria-hidden="true" className="h-4 w-4 shrink-0 text-brand opacity-0 transition group-hover:translate-x-0.5 group-hover:opacity-100" />
+                    <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-brand-soft text-brand">
+                      <HeroIcon className="h-5 w-5" name={service.iconName} />
                     </span>
-                    <span className="mt-1 block text-xs font-medium text-brand">{service.eyebrow}</span>
-                    <span className="mt-1 block text-xs leading-5 text-muted">{service.description}</span>
+                    <span className="min-w-0 flex-1">
+                      <span className={`block text-sm font-bold ${
+                        pathname === `/${service.slug}` ? "text-brand" : "text-foreground group-hover:text-brand"
+                      }`}>
+                        {service.name}
+                      </span>
+                      <span className="mt-0.5 block text-xs font-medium text-brand">{service.eyebrow}</span>
+                    </span>
+                    <ArrowRight aria-hidden="true" className="h-4 w-4 shrink-0 text-brand opacity-0 transition group-hover:translate-x-0.5 group-hover:opacity-100" />
                   </Link>
                 ))}
               </div>
@@ -147,7 +152,7 @@ export function SiteHeader() {
                 See how we coordinate trusted help around your needs, at home or across the city.
               </p>
               <Link
-                className={cn(buttonVariants({ variant: "accent" }), "relative mt-5 font-bold")}
+                className={cn(buttonVariants({ variant: "primary" }), "relative mt-5 font-bold")}
                 href="/how-it-works"
               >
                 How it works

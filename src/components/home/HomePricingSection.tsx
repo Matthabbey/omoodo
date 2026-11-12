@@ -1,5 +1,7 @@
+import { SIMPLE_WATERMARK_ART } from "../../constants/cultural-watermarks";
 import { HOME_PRICING_COPY } from "../../constants/home-copy";
 import { Badge } from "../ui";
+import { CulturalWatermarks } from "./CulturalWatermarks";
 import { HomePricingCarousel } from "./HomePricingCarousel";
 import { ScrollReveal } from "./ScrollReveal";
 
@@ -7,6 +9,7 @@ import { ScrollReveal } from "./ScrollReveal";
 export function HomePricingSection() {
   return (
     <section className="relative isolate overflow-hidden border-t border-border bg-deep py-20 text-on-brand sm:py-28">
+      <CulturalWatermarks designs={SIMPLE_WATERMARK_ART} />
       <span aria-hidden="true" className="absolute -left-40 top-10 h-[34rem] w-[34rem] rounded-full bg-brand/40 blur-3xl" />
       <span aria-hidden="true" className="absolute -bottom-40 -right-20 h-[26rem] w-[26rem] rounded-full bg-brand/30 blur-3xl" />
       <div className="relative z-10 mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">

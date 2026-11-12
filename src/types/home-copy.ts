@@ -17,10 +17,3 @@ export interface FooterCopy {
   readonly closingLine: string;
   readonly rightsSuffix: string;
 }
-
-export interface QuickFinderCopy {
-  readonly formLabel: string;
-  readonly serviceLabel: string;
-  readonly locationLabel: string;
-  readonly submitLabel: string;
-}

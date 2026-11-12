@@ -6,6 +6,7 @@ import type {
   HowItWorksFeedToneClasses,
   HowItWorksHeadline,
 } from "../types/how-it-works";
+import { PRIMARY_CTA_LABEL } from "./brand";
 
 export const HOW_IT_WORKS_HEADING_ID = "how-it-works-heading";
 export const HOW_IT_WORKS_STEPS_ID = "steps";
@@ -19,7 +20,7 @@ export const HOW_IT_WORKS_HEADLINE: HowItWorksHeadline = {
 export const HOW_IT_WORKS_DESCRIPTION =
   "From the first conversation to final confirmation, you always know what is happening and what comes next.";
 
-export const HOW_IT_WORKS_PRIMARY_CTA: HeroCta = { label: "Tell us what you need", href: "/contact" };
+export const HOW_IT_WORKS_PRIMARY_CTA: HeroCta = { label: PRIMARY_CTA_LABEL, href: "/contact" };
 export const HOW_IT_WORKS_SECONDARY_CTA: HeroCta = { label: "See the steps", href: `#${HOW_IT_WORKS_STEPS_ID}` };
 
 export const HOW_IT_WORKS_TRUST_FACTS: readonly HeroTrustFact[] = [

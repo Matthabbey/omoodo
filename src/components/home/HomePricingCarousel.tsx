@@ -3,8 +3,7 @@
 import { useRef, useState, type KeyboardEvent, type TouchEvent } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { HOME_PRICING_OPTIONS } from "../../constants/home";
-import { HOME_PRICING_FLING_MS } from "../../constants/home-copy";
-import { HERO_SLIDE_SWIPE_THRESHOLD_PX } from "../../constants/hero-slides";
+import { HOME_PRICING_FLING_MS, HOME_PRICING_SWIPE_THRESHOLD_PX } from "../../constants/home-copy";
 import { cn } from "../../lib/utils";
 import { Button } from "../ui";
 import { HomePricingCard } from "./HomePricingCard";
@@ -43,8 +42,8 @@ export function HomePricingCarousel() {
     touchStartX.current = null;
     if (start === null || end === undefined) return;
     const delta = start - end;
-    if (delta > HERO_SLIDE_SWIPE_THRESHOLD_PX) goTo(index + 1, 1);
-    else if (delta < -HERO_SLIDE_SWIPE_THRESHOLD_PX) goTo(index - 1, -1);
+    if (delta > HOME_PRICING_SWIPE_THRESHOLD_PX) goTo(index + 1, 1);
+    else if (delta < -HOME_PRICING_SWIPE_THRESHOLD_PX) goTo(index - 1, -1);
   }
 
   if (!option) return null;

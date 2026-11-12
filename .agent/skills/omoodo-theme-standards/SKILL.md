@@ -103,28 +103,59 @@ Use these as starting patterns, adapting them to the feature's user and task:
 
 - **Marketing or discovery landing:** use a concise headline and supporting
   copy, one clear primary action, and a relevant image or illustration.
-  The home hero is a full-viewport slider (`HeroSlider`): one slide per
-  highlight (the brand promise, then each service) from `HERO_SLIDES`, each a
-  full-bleed licensed photograph under a `deep` gradient with the eyebrow in
-  gold, a white headline, one short paragraph, and an `accent` primary CTA
-  paired with the translucent `secondary` pill. A row of labelled tabs along
-  the bottom (kicker plus promise, gold progress underline) doubles as the
-  slide indicator; prev, pause and next use the `secondary` icon `Button`.
-  Slides auto-advance every seven seconds (never paused by hover, since the
-  pointer is almost always over a full-viewport hero), stop only via the
-  pause control, support arrow keys and swipe, and switch without a slide
-  transition under `prefers-reduced-motion`. Photos are positioned near the
-  top (`HERO_SLIDE_DEFAULT_FOCAL`, overridable per slide) so heads stay in
-  frame on tall viewports. Inner-page heroes (for example `/how-it-works`) use a split
+  The home hero (`HomeHero`) is a fixed single image, not a slider: the
+  owner-supplied transparent cut-out of the team multitasking across the
+  services, with its own service labels (the one exception to the
+  licensed-photograph rule below). It sits uncropped (`object-contain`) on a
+  `brand-soft` surface with no overlay. The promise sits in a row beneath it
+  on the same `brand-soft` surface, with no divider and more space below
+  than above: `accent-deep` eyebrow, compact dark `h1` with the last word in
+  `brand` over a gold underline, one short `muted` paragraph, and the
+  `primary` + `outline` buttons. From `xl` the whole hero fills the screen
+  below the header and the graphic scales to the space above the promise;
+  on smaller screens the graphic keeps its own aspect ratio
+  (`HERO_IMAGE_ASPECT`). Copy and the image live in
+  `src/constants/hero-home.ts`. Inner-page heroes (for example `/how-it-works`) use a split
   hero instead; when no licensed photograph exists, the right column is
   an illustrated, token-based visual built from existing patterns (`surface`
   cards, an `accent` progress line, CSS keyframes disabled under
   `prefers-reduced-motion`), never an AI render. Elsewhere, arrange text and
   imagery side by side on wide screens and stack them on narrow screens.
+- **Service pages:** every service page uses `ServicePageContent`: a wide
+  photo `ServiceBanner` under a `deep` gradient (top bar with a "Home >
+  Service" breadcrumb and `ServiceShareLinks` for email, WhatsApp and copy
+  link as `secondary` icon buttons; the `h1` headline and one lead paragraph
+  over the photo), then `ServiceOverview` on the cream background (category
+  line, "Ọmọ Ọdọ <service>" `h2`, description, tick list of what is covered,
+  a `primary` button using the shared `PRIMARY_CTA_LABEL`, and a second licensed photo in a
+  `rounded-3xl` frame), then a slim closing band linking to how it works.
+  A service with longer content (`SERVICE_PAGE_EXTRAS`, currently Concierge)
+  swaps the tick list for its own paragraphs and adds `ServiceCategoryGrid`
+  on `brand-soft`: `surface` cards, each with a `brand` icon tile, an area
+  title and a bullet list, with an `accent` "Coming soon" `Badge` where needed.
+- **Example scenarios:** the home page's "In practice" section
+  (`HomeScenariosSection`, before the FAQs) shows three `rounded-3xl` cards
+  of typical requests, each tagged "Example" with an `accent` `Badge`. They
+  are illustrations, never invented customer quotes; only add real reviews
+  with a real source and permission, and keep examples labelled as examples.
+- **Reviews:** `HomeReviewsSection` (quote cards: `accent` quote tile,
+  `blockquote`, name, location and service) replaces the example scenarios
+  on the live site only when `HOME_REVIEWS_PUBLISHED` in
+  `src/constants/home-reviews.ts` is true. Set it to true only when every
+  review is a real customer's words used with permission. Until then the
+  drafts render in development only. The cards move in one endless row
+  (`HomeReviewsMarquee`, `.animate-reviews-marquee`): it must pause on
+  hover, on focus and with its pause/play button, expose each review to
+  assistive technology once, and stand still as a hand-scrolled row under
+  `prefers-reduced-motion`.
+- **Section backgrounds:** a plain cream or `deep` section gets the faint
+  triangle-weave `SIMPLE_WATERMARK_ART` via `CulturalWatermarks` (subtle, no
+  corner medallions) behind `relative z-10` content. Photo heroes and
+  banners carry no pattern.
 - **Voice and narrative:** the home page reads as one story. The hero makes
-  the promise, sections 01-08 carry numbered chapter eyebrows ("01 · Why we
-  exist" … "07 · Good to know" FAQs as native `details` disclosures, "08 · Your
-  move") and each hands off to the next, and the multi-column `SiteFooter`
+  the promise, the service cards follow with no heading, and each later section carries
+  a short unnumbered eyebrow ("Why we exist" … "Good to know" FAQs as native
+  `details` disclosures, "Your move") and each hands off to the next, and the multi-column `SiteFooter`
   signs off with the tagline. "Buddy" is the brand voice word at the open and
   close; "trusted partner" is reserved for the purpose statement in the intro
   headline. Section copy lives in `src/constants/home-copy.ts` and
@@ -150,25 +181,29 @@ Use these as starting patterns, adapting them to the feature's user and task:
   icon controls sit under the rail and disable at the ends. Reuse this pattern
   for any "lineup" of peers (audiences, products, services) rather than a
   static grid.
-- **Stacked photo cards:** the home services section (`HomeServicesStory`
-  with `HomeServiceStackCard`) renders each service as a full-bleed photo
-  card: `sticky` list items whose top offset grows one rem per card
-  (`HOME_SERVICE_STACK_OFFSETS`) so earlier cards peek above later ones, a
-  `deep` gradient overlay for legibility, a `blur` `Badge` eyebrow top-left,
-  the white headline and one-paragraph write-up bottom-left, and a frosted
-  `surface` panel bottom-right with highlights and an `accent` icon link. Never
-  wrap sticky cards in `ScrollReveal`; its transforms break sticky positioning.
+- **Service photo cards:** the home services section (`HomeServicesStory`,
+  directly under the hero) is a grid (two columns at `sm`, one on phones; no
+  sideways scrolling) of compact `HomeServiceCard`s, one per service in
+  `HOME_SERVICE_CARDS` order, with no visible section heading. At `lg` all
+  seven show at once as three wider cards on top and four below.
+  Each is a `rounded-3xl` photo card (about 24rem tall at `lg`) whose photo
+  shows clearly at the top and fades into the same `deep` gradient used by
+  the hero and service banners, holding the gold category line, the white
+  "Ọmọ Ọdọ <service>" title, a list of at most four bullets of what is covered (Concierge
+  uses a short paragraph) and a small `primary` "Explore" pill to the service
+  page.
 - **Cards and tags:** make the information hierarchy obvious, keep repeated
   cards aligned, and use tags for compact secondary metadata—not as substitutes
   for headings or status text.
 - **Actions:** every call to action pairs wine and yellow. The `primary`
   variant is yellow (`accent`) with wine (`brand`) text that flips to wine on
-  hover; `brand` is solid wine with white text (the home hero's primary
-  action, paired with an `accent` secondary); `accent` is yellow
-  with wine text; `outline` is a wine outline that fills wine on hover;
+  hover (there is no separate `accent` variant); `brand` is solid wine with
+  white text; `outline` is a wine outline that fills wine on hover;
   `secondary` is a translucent yellow pill for dark imagery. Use the `Button`
   primitive, or `buttonVariants` from `src/components/ui` on a `Link`, instead
-  of hand-written pill classes. Button labels should describe the result.
+  of hand-written pill classes. Every "start a request" action uses the one
+  shared label, `PRIMARY_CTA_LABEL` in `src/constants/brand.ts`. The `deep`
+  token is an alias of `brand-deep`, so the colour is defined once.
 
 ## Component and implementation rules
 

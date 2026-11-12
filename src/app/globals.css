@@ -13,7 +13,7 @@
   --accent: #f5c944;
   --accent-deep: #7d5a0b;
   --accent-soft: #fdf8d8;
-  --deep: #41111f;
+  --deep: var(--brand-deep);
   --on-brand: #ffffff;
   --on-accent: #541200;
   --culture-green: #078930;
@@ -134,15 +134,6 @@ body {
   animation: feedLineFill 10s linear infinite both;
 }
 
-@keyframes heroTabProgress {
-  from { transform: scaleX(0); }
-  to { transform: scaleX(1); }
-}
-
-.animate-hero-tab-progress {
-  animation: heroTabProgress linear forwards;
-}
-
 /* The top card of a deck is thrown off to one side, tilting and fading as it goes. */
 @keyframes cardFlingRight {
   from { transform: translate(0, 0) rotate(0deg); opacity: 1; }
@@ -172,6 +163,11 @@ body {
   to { opacity: 0; }
 }
 
+/* Review row: the track holds the list an even number of times, so sliding half its width loops with no seam. */
+@keyframes reviewsMarquee { to { transform: translateX(-50%); } }
+.animate-reviews-marquee { animation: reviewsMarquee 50s linear infinite; }
+.animate-reviews-marquee:is(:hover, :focus-within, [data-paused="true"]) { animation-play-state: paused; }
+
 .watermark-fade-left {
   -webkit-mask-image: linear-gradient(to right, black, transparent);
   mask-image: linear-gradient(to right, black, transparent);
@@ -187,9 +183,9 @@ body {
     scroll-behavior: auto;
   }
   .animate-hero-content,
+  .animate-reviews-marquee,
   .animate-feed-card,
-  .animate-feed-line,
-  .animate-hero-tab-progress {
+  .animate-feed-line {
     animation: none !important;
     transform: none !important;
     opacity: 1 !important;

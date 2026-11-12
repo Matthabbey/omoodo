@@ -1,5 +1,6 @@
 import type { FooterColumn } from "../types/footer";
 import { buildWhatsAppHref } from "../lib/whatsapp";
+import { PRIMARY_CTA_LABEL } from "./brand";
 import { FAQ_SECTION_ID } from "./faqs";
 import { ABOUT_SECTION_ID } from "./navigation";
 import { SERVICE_PAGES } from "./services";
@@ -23,7 +24,7 @@ const COMPANY_COLUMN: FooterColumn = {
 const CONTACT_COLUMN: FooterColumn = {
   title: "Get in touch",
   links: [
-    { label: "Request an errand", href: "/contact" },
+    { label: PRIMARY_CTA_LABEL, href: "/contact" },
     ...(WHATSAPP_NUMBER
       ? [{ label: WHATSAPP_FAB_LABEL, href: buildWhatsAppHref(WHATSAPP_NUMBER, WHATSAPP_GREETING), external: true }]
       : []),
@@ -32,4 +33,4 @@ const CONTACT_COLUMN: FooterColumn = {
 
 export const FOOTER_COLUMNS: readonly FooterColumn[] = [SERVICES_COLUMN, COMPANY_COLUMN, CONTACT_COLUMN];
 
-export const FOOTER_LOCATIONS = "Lagos · Abuja · Port Harcourt · Across Nigeria · For Nigerians abroad";
+export const FOOTER_LOCATIONS = "Lagos Nigeria · For Nigerians abroad";

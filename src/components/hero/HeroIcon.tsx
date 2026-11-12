@@ -1,10 +1,14 @@
 import {
+  BedDouble,
   Briefcase,
   Building2,
+  CalendarHeart,
   Camera,
   Car,
   Check,
+  ConciergeBell,
   Globe,
+  HeartHandshake,
   House,
   MapPin,
   MessageSquare,
@@ -36,6 +40,10 @@ const HERO_ICONS: Record<HeroIconName, LucideIcon> = {
   globe: Globe,
   briefcase: Briefcase,
   house: House,
+  "concierge-bell": ConciergeBell,
+  bed: BedDouble,
+  "calendar-heart": CalendarHeart,
+  "heart-handshake": HeartHandshake,
 };
 
 interface HeroIconProps {

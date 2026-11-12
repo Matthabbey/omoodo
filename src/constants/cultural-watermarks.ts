@@ -97,6 +97,11 @@ export const HOW_IT_WORKS_WATERMARK_ART: readonly CulturalWatermarkArt[] = [
   { id: "stepped-meander", placement: "bottom-right" },
 ];
 
+/** Default background for otherwise plain sections: the faint triangle weave only, no corner medallions. */
+export const SIMPLE_WATERMARK_ART: readonly CulturalWatermarkArt[] = [
+  { id: "triangle-textile", placement: "content-fill", color: "brand" },
+];
+
 export const SERVICE_MENU_WATERMARK_ART: readonly CulturalWatermarkArt[] = [
   { id: "diamond-weave", placement: "content-fill", color: "brand" },
 ];
@@ -124,5 +129,13 @@ export const SERVICE_WATERMARK_ART: Record<
   shop: [
     { id: "flowing-waves", placement: "top-left" },
     { id: "rosette", placement: "bottom-right" },
+  ],
+  events: [
+    { id: "sunburst", placement: "top-left" },
+    { id: "beadwork", placement: "bottom-right" },
+  ],
+  gives: [
+    { id: "concentric-rings", placement: "top-left" },
+    { id: "basket-weave", placement: "bottom-right" },
   ],
 };

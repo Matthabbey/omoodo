@@ -1,40 +1,14 @@
 "use client";
 
-import { useCallback, useEffect, useRef, useState } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { HOME_AUDIENCES } from "../../constants/home";
 import { AUDIENCES_SECTION_ID, HOME_AUDIENCES_REGION_LABEL } from "../../constants/home-copy";
+import { useScrollRail } from "../../hooks/useScrollRail";
 import { Button } from "../ui";
 import { HomeAudienceSlide } from "./HomeAudienceSlide";
 
 export function HomeAudienceCarousel() {
-  const railRef = useRef<HTMLUListElement>(null);
-  const [canScrollPrev, setCanScrollPrev] = useState(false);
-  const [canScrollNext, setCanScrollNext] = useState(true);
-
-  const updateBounds = useCallback(() => {
-    const rail = railRef.current;
-    if (!rail) return;
-    setCanScrollPrev(rail.scrollLeft > 1);
-    setCanScrollNext(rail.scrollLeft + rail.clientWidth < rail.scrollWidth - 1);
-  }, []);
-
-  useEffect(() => {
-    updateBounds();
-    const rail = railRef.current;
-    if (!rail) return;
-    const observer = new ResizeObserver(updateBounds);
-    observer.observe(rail);
-    return () => observer.disconnect();
-  }, [updateBounds]);
-
-  function scrollByCard(direction: -1 | 1) {
-    const rail = railRef.current;
-    const firstCard = rail?.firstElementChild;
-    if (!rail || !(firstCard instanceof HTMLElement)) return;
-    const gap = Number.parseFloat(getComputedStyle(rail).columnGap) || 0;
-    rail.scrollBy({ left: direction * (firstCard.offsetWidth + gap), behavior: "smooth" });
-  }
+  const { railRef, canScrollPrev, canScrollNext, updateBounds, scrollByCard } = useScrollRail();
 
   return (
     <div aria-label={HOME_AUDIENCES_REGION_LABEL} aria-roledescription="carousel" className="scroll-mt-24" id={AUDIENCES_SECTION_ID} role="region">

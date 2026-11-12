@@ -5,6 +5,11 @@ export function buildWhatsAppHref(number: string, text: string): string {
   return `${WHATSAPP_BASE_URL}/${number}?text=${encodeURIComponent(text)}`;
 }
 
+/** WhatsApp link that lets the visitor pick a contact and share the given text. */
+export function buildWhatsAppShareHref(text: string): string {
+  return `${WHATSAPP_BASE_URL}/?text=${encodeURIComponent(text)}`;
+}
+
 export function buildErrandMessage(request: ErrandRequest): string {
   const lines = [
     WHATSAPP_ERRAND_GREETING,

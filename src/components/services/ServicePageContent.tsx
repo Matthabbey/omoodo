@@ -1,82 +1,41 @@
-import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight, Check } from "lucide-react";
-import { cn } from "../../lib/utils";
-import { buttonVariants } from "../ui";
+import { ArrowRight } from "lucide-react";
+import { SIMPLE_WATERMARK_ART } from "../../constants/cultural-watermarks";
+import { SERVICE_PAGE_EXTRAS } from "../../constants/service-extras";
+import { SERVICE_CLOSING_EYEBROW, SERVICE_CLOSING_LINK } from "../../constants/service-page";
+import { getSiteUrl } from "../../lib/site-url";
 import type { ServicePageData } from "../../types/service";
-import { SERVICE_WATERMARK_ART } from "../../constants/cultural-watermarks";
 import { CulturalWatermarks } from "../home/CulturalWatermarks";
+import { ServiceBanner } from "./ServiceBanner";
+import { ServiceCategoryGrid } from "./ServiceCategoryGrid";
+import { ServiceOverview } from "./ServiceOverview";
 
 interface ServicePageContentProps {
   readonly service: ServicePageData;
 }
 
 export function ServicePageContent({ service }: ServicePageContentProps) {
+  const shareUrl = new URL(`/${service.slug}`, getSiteUrl()).toString();
+  const extras = SERVICE_PAGE_EXTRAS[service.slug];
   return (
     <main className="min-h-screen bg-background text-foreground">
-      <section className="relative isolate overflow-hidden">
-        <CulturalWatermarks designs={SERVICE_WATERMARK_ART[service.slug]} />
-        <div className="relative z-10 mx-auto grid max-w-7xl gap-10 px-4 py-12 sm:px-6 sm:py-16 lg:grid-cols-2 lg:items-center lg:px-8 lg:py-24">
-          <div>
-            <Link className="text-sm font-semibold text-brand hover:text-brand-deep" href="/">
-              Ọmọ Ọdọ <span aria-hidden="true">/</span> Services
-            </Link>
-            <p className="mt-8 text-xs font-bold uppercase tracking-widest text-brand">
-              {service.eyebrow}
-            </p>
-            <h1 className="mt-4 max-w-2xl text-4xl font-bold leading-tight tracking-tight sm:text-5xl">
-              {service.headline}
-            </h1>
-            <p className="mt-5 max-w-xl text-base leading-7 text-muted sm:text-lg">
-              {service.description}
-            </p>
-            <ul className="mt-7 grid gap-3">
-              {service.highlights.map((highlight) => (
-                <li className="flex items-center gap-3 text-sm font-medium" key={highlight}>
-                  <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-accent-soft text-accent-deep">
-                    <Check aria-hidden="true" className="h-4 w-4" />
-                  </span>
-                  {highlight}
-                </li>
-              ))}
-            </ul>
-            <Link
-              className={cn(buttonVariants({ variant: "primary", size: "lg" }), "mt-8")}
-              href={`/contact?service=${service.slug}`}
-            >
-              Talk to our team <ArrowRight aria-hidden="true" className="h-4 w-4" />
-            </Link>
-          </div>
+      <ServiceBanner service={service} shareUrl={shareUrl} />
+      <ServiceOverview paragraphs={extras?.overviewParagraphs} service={service} />
+      {extras ? (
+        <ServiceCategoryGrid categories={extras.categories} heading={extras.categoriesHeading} headingId={`${service.slug}-covers`} />
+      ) : null}
 
-          <div className="relative aspect-[4/3] overflow-hidden rounded-3xl border border-border bg-brand-soft shadow-sm">
-            <Image
-              alt={service.imageAlt}
-              className="object-cover"
-              fill
-              priority
-              sizes="(max-width: 1024px) 100vw, 50vw"
-              src={service.imageSrc}
-            />
-          </div>
-        </div>
-      </section>
-
-      <section className="border-t border-border bg-surface py-14 sm:py-20">
-        <div className="mx-auto max-w-4xl px-4 text-center sm:px-6 lg:px-8">
-          <p className="text-xs font-bold uppercase tracking-widest text-brand">
-            The Ọmọ Ọdọ difference
-          </p>
-          <h2 className="mt-4 text-3xl font-bold tracking-tight sm:text-4xl">
-            {service.detailHeading}
-          </h2>
-          <p className="mx-auto mt-4 max-w-2xl leading-7 text-muted">
-            {service.detailDescription}
-          </p>
+      <section className="relative isolate border-t border-border bg-surface py-12 sm:py-16">
+        <CulturalWatermarks designs={SIMPLE_WATERMARK_ART} />
+        <div className="relative z-10 mx-auto max-w-4xl px-4 text-center sm:px-6 lg:px-8">
+          <p className="text-xs font-bold uppercase tracking-widest text-brand">{SERVICE_CLOSING_EYEBROW}</p>
+          <h2 className="mt-4 text-3xl font-bold tracking-tight sm:text-4xl">{extras?.closing.heading ?? service.detailHeading}</h2>
+          {extras ? <p className="mt-4 text-xl font-bold text-brand sm:text-2xl">{extras.closing.emphasis}</p> : null}
           <Link
-            className="mt-7 inline-flex items-center gap-2 font-semibold leading-none text-brand hover:text-brand-deep [&_svg]:shrink-0"
-            href="/how-it-works"
+            className="mt-6 inline-flex items-center gap-2 font-semibold leading-none text-brand hover:text-brand-deep [&_svg]:shrink-0"
+            href={SERVICE_CLOSING_LINK.href}
           >
-            How Ọmọ Ọdọ works <ArrowRight aria-hidden="true" className="h-4 w-4" />
+            {SERVICE_CLOSING_LINK.label} <ArrowRight aria-hidden="true" className="h-4 w-4" />
           </Link>
         </div>
       </section>

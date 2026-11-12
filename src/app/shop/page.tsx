@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { ServicePageContent } from "../../components/services/ServicePageContent";
 import { getServicePage } from "../../constants/services";
 
-export const metadata: Metadata = { title: "Shop" };
+export const metadata: Metadata = { title: "Shop", description: getServicePage("shop")?.description };
 
 export default function ShopPage() {
   const service = getServicePage("shop");

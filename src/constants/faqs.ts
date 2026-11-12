@@ -5,7 +5,7 @@ import { BRAND_NAME } from "./brand";
 export const FAQ_SECTION_ID = "faqs";
 
 export const HOME_FAQ_COPY: SectionCopy = {
-  eyebrow: "07 · Good to know",
+  eyebrow: "Good to know",
   title: "Questions people ask before their first errand.",
   description: "Short answers to the things most people want settled before they hand something over.",
 };
@@ -24,7 +24,7 @@ export const HOME_FAQS: readonly FaqItem[] = [
   },
   {
     question: "What can you handle for me?",
-    answer: `Five connected services: ${BRAND_NAME} Concierge for representation and property or family matters, Move for transport and airport transfers, Stay for accommodation, Home Care for laundry and everyday errands, and Shop for sourcing and procurement. Start with one, or combine them through Concierge.`,
+    answer: `Seven connected services: ${BRAND_NAME} Concierge for representation and property or family matters, Move for transport and airport transfers, Stay for accommodation, Home Care for laundry and everyday errands, Shop for sourcing and procurement, Events for planning and on-ground event support, and Gives for giving and impact projects. Start with one, or combine them through Concierge.`,
   },
   {
     question: "How is pricing worked out?",

@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { ServicePageContent } from "../../components/services/ServicePageContent";
 import { getServicePage } from "../../constants/services";
 
-export const metadata: Metadata = { title: "Stay" };
+export const metadata: Metadata = { title: "Stay", description: getServicePage("stay")?.description };
 
 export default function StayPage() {
   const service = getServicePage("stay");

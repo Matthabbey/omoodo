@@ -13,8 +13,6 @@ export const buttonVariants = cva(
           "border border-accent/60 bg-accent/15 text-accent shadow-sm backdrop-blur-md hover:border-accent hover:bg-accent hover:text-brand",
         outline:
           "border border-brand bg-surface text-brand hover:bg-brand hover:text-accent",
-        accent:
-          "bg-accent text-brand shadow-sm hover:bg-brand hover:text-accent hover:shadow-md",
         ghost:
           "text-muted hover:bg-brand-soft hover:text-brand-deep",
       },

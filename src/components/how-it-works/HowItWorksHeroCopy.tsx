@@ -48,7 +48,7 @@ export function HowItWorksHeroCopy() {
           <ArrowUpRight aria-hidden="true" className="h-4 w-4" />
         </Link>
         <Link
-          className={cn(buttonVariants({ variant: "accent", size: "lg" }), "font-bold")}
+          className={cn(buttonVariants({ variant: "primary", size: "lg" }), "font-bold")}
           href={HOW_IT_WORKS_SECONDARY_CTA.href}
         >
           {HOW_IT_WORKS_SECONDARY_CTA.label}
