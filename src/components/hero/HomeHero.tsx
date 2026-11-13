@@ -19,21 +19,22 @@ const HERO_HEADING_ID = "home-hero-heading";
 
 /**
  * Fixed hero: the transparent team graphic on a pale maroon surface, with the
- * promise in a row beneath it on the same surface. From `xl` the hero fills the screen below the
- * header and the graphic scales to fit the space above the promise, uncropped.
+ * promise in a row beneath it on the same surface. The hero fills the screen below the header at
+ * every size: from `xl` the graphic scales to fit the space above the promise, uncropped; below
+ * `xl` it keeps its own aspect ratio, centred in any spare height, and the hero may grow taller.
  */
 export function HomeHero() {
   return (
     <section
       aria-labelledby={HERO_HEADING_ID}
-      className="relative isolate flex flex-col overflow-hidden bg-brand-soft text-foreground xl:h-[calc(100svh-5rem)] xl:min-h-[36rem]"
+      className="relative isolate flex flex-col overflow-hidden bg-brand-soft text-foreground min-h-[calc(100svh-5rem)] xl:h-[calc(100svh-5rem)] xl:min-h-[36rem]"
     >
-      <div className={cn("relative w-full xl:aspect-auto xl:min-h-0 xl:flex-1", HERO_IMAGE_ASPECT)}>
-        <Image alt={HERO_IMAGE.alt} className="object-contain object-bottom" fill priority sizes="100vw" src={HERO_IMAGE.src} />
+      <div className={cn("relative w-full shrink-0 grow xl:aspect-auto xl:min-h-0 xl:flex-1", HERO_IMAGE_ASPECT)}>
+        <Image alt={HERO_IMAGE.alt} className="object-contain object-center xl:object-bottom" fill priority sizes="100vw" src={HERO_IMAGE.src} />
       </div>
 
       <div>
-        <div className="animate-hero-content mx-auto flex w-full max-w-7xl flex-col gap-5 px-4 pb-10 pt-3 sm:px-6 lg:flex-row lg:items-center lg:justify-between lg:px-8 lg:pr-52 xl:pb-12 xl:pt-2">
+        <div className="animate-hero-content mx-auto flex w-full max-w-7xl flex-col gap-5 px-4 pb-24 pt-3 sm:px-6 lg:flex-row lg:pb-10 lg:items-center lg:justify-between lg:px-8 lg:pr-52 xl:pb-12 xl:pt-2">
           <div className="max-w-3xl">
             <p className="text-xs font-semibold text-accent-deep sm:text-sm">{HERO_EYEBROW}</p>
             <h1 className="mt-1 text-2xl font-bold leading-[1.1] tracking-tight sm:text-3xl xl:text-4xl" id={HERO_HEADING_ID}>

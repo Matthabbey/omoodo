@@ -111,10 +111,11 @@ Use these as starting patterns, adapting them to the feature's user and task:
   on the same `brand-soft` surface, with no divider and more space below
   than above: `accent-deep` eyebrow, compact dark `h1` with the last word in
   `brand` over a gold underline, one short `muted` paragraph, and the
-  `primary` + `outline` buttons. From `xl` the whole hero fills the screen
-  below the header and the graphic scales to the space above the promise;
-  on smaller screens the graphic keeps its own aspect ratio
-  (`HERO_IMAGE_ASPECT`). Copy and the image live in
+  `primary` + `outline` buttons. The whole hero fills the screen below the
+  header at every size. From `xl` the graphic scales to the space above the
+  promise; on smaller screens the graphic keeps its own aspect ratio
+  (`HERO_IMAGE_ASPECT`) centred in any spare height, and the hero grows
+  taller than the screen rather than clipping. Copy and the image live in
   `src/constants/hero-home.ts`. Inner-page heroes (for example `/how-it-works`) use a split
   hero instead; when no licensed photograph exists, the right column is
   an illustrated, token-based visual built from existing patterns (`surface`
