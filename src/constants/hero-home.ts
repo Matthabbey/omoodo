@@ -1,7 +1,7 @@
 import type { HeroCta, HeroImage } from "../types/hero-home";
 import { BRAND_NAME, PRIMARY_CTA_LABEL } from "./brand";
 
-export const HERO_EYEBROW = "Your trusted partner to get things done.";
+export const HERO_EYEBROW = "Your Trusted Partner for Getting Things Done";
 export const HERO_HEADLINE_LEAD = "Life gets busy.";
 export const HERO_HEADLINE_TAIL = "We get things";
 export const HERO_HEADLINE_UNDERLINED = "done.";

@@ -13,7 +13,7 @@ export const SERVICE_PAGES: readonly ServicePageData[] = [
     iconName: "concierge-bell",
     name: "Concierge",
     eyebrow: "Personal representation",
-    headline: "Your trusted partner to get things done.",
+    headline: "Your Trusted Partner for Getting Things Done",
     description:
       "Sometimes, you don't need a one-time service. You need someone you can trust to keep things handled for you.",
     imageSrc: "/images/hero/hero-concierge.jpg",
