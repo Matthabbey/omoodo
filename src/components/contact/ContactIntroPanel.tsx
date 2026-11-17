@@ -7,7 +7,7 @@ const BULLET_ICONS: Readonly<Record<ContactBulletIcon, LucideIcon>> = {
   globe: Globe,
   receipt: Receipt,
 };
-
+//service of heros
 export function ContactIntroPanel() {
   return (
     <section className="rounded-[2rem] bg-deep p-8 text-on-brand shadow-xl shadow-deep/25 sm:p-10 lg:sticky lg:top-24">
