@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { SiteFooter } from "../components/layout/SiteFooter";
 import { SiteHeader } from "../components/layout/SiteHeader";
 import { CustomScrollbars } from "../components/layout/CustomScrollbars";
+import { GoogleTagManager } from "../components/layout/GoogleTagManager";
 import { WhatsAppFab } from "../components/layout/WhatsAppFab";
 import { BRAND_DESCRIPTION, BRAND_NAME, BRAND_SITE_TITLE, BRAND_TITLE_TEMPLATE } from "../constants/brand";
 import { getSiteUrl } from "../lib/site-url";
@@ -42,6 +43,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         <SiteFooter />
         <WhatsAppFab />
         <CustomScrollbars />
+        <GoogleTagManager />
       </body>
     </html>
   );
